@@ -367,6 +367,120 @@
       text-align: center;
     }
 
+    /* LIVE Now / Up Next Card */
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.25); }
+    }
+    .live-card {
+      background: #FFFFFF;
+      border: 1.5px solid #FAD3DC;
+      border-radius: 18px;
+      padding: 13px 15px;
+      box-shadow: 0 4px 14px rgba(241, 103, 133, 0.09);
+    }
+    .live-card.upcoming {
+      border-color: var(--apnm-blue-border);
+      box-shadow: 0 4px 14px rgba(0, 140, 214, 0.08);
+    }
+    .live-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: #E11D48;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .live-pill.next { background: var(--apnm-blue); }
+    .live-pill.dday { background: var(--apnm-indigo); }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      animation: pulseDot 1.3s infinite ease-in-out;
+    }
+    .live-clock {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--apnm-slate);
+      font-variant-numeric: tabular-nums;
+    }
+    .live-item {
+      padding: 9px 11px;
+      border-radius: 12px;
+      background: #FFF5F7;
+      border: 1px solid #FAD3DC;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+    .live-item.next-item {
+      background: var(--apnm-blue-table);
+      border-color: var(--apnm-blue-border);
+    }
+    .live-item-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.35;
+    }
+    .live-item-meta {
+      font-size: 11.5px;
+      color: #455A64;
+      margin-top: 3px;
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .live-progress {
+      height: 4px;
+      background: #FDE2E7;
+      border-radius: 999px;
+      margin-top: 7px;
+      overflow: hidden;
+    }
+    .live-progress-bar {
+      height: 100%;
+      background: #E11D48;
+      border-radius: 999px;
+    }
+    .sim-btn {
+      border: 1px solid var(--apnm-blue-border);
+      background: var(--apnm-blue-table);
+      color: var(--apnm-indigo);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .session-card.is-live {
+      border: 2px solid #E11D48;
+      border-left: 6px solid #E11D48;
+      box-shadow: 0 4px 16px rgba(225, 29, 72, 0.16);
+    }
+    .live-inline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: #E11D48;
+      color: #FFFFFF;
+    }
+
     /* Session Cards with Official Pastel Colors */
     .session-list {
       display: flex;
@@ -914,6 +1028,15 @@
         searchAllDaysHint: '전체 일정(Day 1–3) 검색 결과',
         allRooms: '전체 강의실',
         aiBadge: '한·영 AI 통역',
+        liveNow: '지금 진행 중',
+        upNext: '다음 일정',
+        beforeEvent: '학회 예정',
+        afterEvent: '학회 종료',
+        afterEventMsg: 'APNM 2027 학술대회가 종료되었습니다. 프로그램과 내 스케줄은 계속 열람할 수 있습니다.',
+        startsInMin: '분 후 시작',
+        simPreview: '▶ 진행중 미리보기',
+        simExit: '✕ 현재시간 복귀',
+        simTag: '시뮬레이션',
         conflict: '시간 겹침',
         details: '상세 ›',
         days: {
@@ -981,6 +1104,15 @@
         searchAllDaysHint: 'Search results across all days (Day 1–3)',
         allRooms: 'All Rooms',
         aiBadge: 'AI KR↔EN',
+        liveNow: 'LIVE NOW',
+        upNext: 'UP NEXT',
+        beforeEvent: 'UPCOMING',
+        afterEvent: 'CONCLUDED',
+        afterEventMsg: 'APNM 2027 has concluded. You can still browse the program and your saved schedule.',
+        startsInMin: ' min left',
+        simPreview: '▶ Preview Live',
+        simExit: '✕ Exit Preview',
+        simTag: 'Demo',
         conflict: 'Time Conflict',
         details: 'Details ›',
         days: {
@@ -1220,6 +1352,168 @@
       return h * 60 + m;
     }
 
+    // --- Real-Time Schedule Detection (KST / Asia/Seoul) ---
+    const DAY_DATES = { 1: '2027-04-01', 2: '2027-04-02', 3: '2027-04-03' };
+    let simLiveMode = false; // Optional preview mode for testing before Apr 2027
+
+    function getCurrentKstParts() {
+      if (simLiveMode) {
+        return { dateStr: '2027-04-02', hhmm: '13:30', mins: 13 * 60 + 30 };
+      }
+      const now = new Date();
+      try {
+        const parts = new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'Asia/Seoul',
+          year: 'numeric', month: '2-digit', day: '2-digit',
+          hour: '2-digit', minute: '2-digit', hour12: false
+        }).formatToParts(now);
+        const map = {};
+        parts.forEach((p) => { map[p.type] = p.value; });
+        const h = Number(map.hour === '24' ? '0' : map.hour);
+        const m = Number(map.minute);
+        return {
+          dateStr: `${map.year}-${map.month}-${map.day}`,
+          hhmm: `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`,
+          mins: h * 60 + m
+        };
+      } catch (_) {
+        const y = now.getFullYear(), mo = String(now.getMonth() + 1).padStart(2, '0'), d = String(now.getDate()).padStart(2, '0');
+        const h = now.getHours(), m = now.getMinutes();
+        return { dateStr: `${y}-${mo}-${d}`, hhmm: `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`, mins: h * 60 + m };
+      }
+    }
+
+    function getLiveState() {
+      const kst = getCurrentKstParts();
+      const activeDay = Number(Object.keys(DAY_DATES).find((k) => DAY_DATES[k] === kst.dateStr)) || 0;
+
+      if (activeDay > 0) {
+        const todaySessions = SESSIONS.filter((s) => s.day === activeDay).sort((a, b) => toMin(a.start) - toMin(b.start));
+        const liveNow = todaySessions.filter((s) => kst.mins >= toMin(s.start) && kst.mins < toMin(s.end));
+        if (liveNow.length > 0) {
+          return { status: 'LIVE', day: activeDay, kst, items: liveNow };
+        }
+        const upNext = todaySessions.filter((s) => toMin(s.start) > kst.mins);
+        if (upNext.length > 0) {
+          const nextStart = upNext[0].start;
+          return { status: 'UP_NEXT', day: activeDay, kst, items: upNext.filter((s) => s.start === nextStart), diffMin: toMin(nextStart) - kst.mins };
+        }
+        if (activeDay < 3) {
+          const tomorrowFirst = SESSIONS.filter((s) => s.day === activeDay + 1).sort((a, b) => toMin(a.start) - toMin(b.start))[0];
+          return { status: 'UP_NEXT', day: activeDay + 1, kst, items: tomorrowFirst ? [tomorrowFirst] : [], diffMin: null };
+        }
+        return { status: 'AFTER', day: 3, kst, items: [] };
+      }
+
+      if (kst.dateStr < DAY_DATES[1]) {
+        const d1 = new Date(DAY_DATES[1] + 'T00:00:00+09:00');
+        const dn = new Date(kst.dateStr + 'T00:00:00+09:00');
+        const dday = Math.max(1, Math.round((d1 - dn) / 86400000));
+        return { status: 'BEFORE', day: 1, kst, dday, items: [SESSIONS[1]] };
+      }
+      return { status: 'AFTER', day: 3, kst, items: [] };
+    }
+
+    function toggleSimLive() {
+      simLiveMode = !simLiveMode;
+      if (simLiveMode) selectedDay = 2;
+      render();
+    }
+
+    function renderLiveWidget() {
+      const t = T[lang];
+      const st = getLiveState();
+      const simBtnHtml = simLiveMode
+        ? `<button class="sim-btn" onclick="toggleSimLive()">${t.simExit}</button>`
+        : (st.status === 'BEFORE' || st.status === 'AFTER' ? `<button class="sim-btn" onclick="toggleSimLive()">${t.simPreview}</button>` : '');
+
+      if (st.status === 'LIVE') {
+        return `
+          <section class="live-card">
+            <div class="live-header">
+              <span class="live-pill"><span class="live-dot"></span> ${t.liveNow}${simLiveMode ? ` · ${t.simTag}` : ''}</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="live-clock">${t.days[st.day].date} ${st.kst.hhmm}</span>
+                ${simBtnHtml}
+              </div>
+            </div>
+            ${st.items.map((s) => {
+              const total = Math.max(1, toMin(s.end) - toMin(s.start));
+              const pct = Math.min(100, Math.max(5, Math.round(((st.kst.mins - toMin(s.start)) / total) * 100)));
+              return `
+                <div class="live-item" onclick="openDetail('${s.id}')">
+                  <div class="live-item-title">${s.title}</div>
+                  <div class="live-item-meta">
+                    <span>🕒 ${s.start}–${s.end}</span>
+                    <span>📍 ${s.room}</span>
+                  </div>
+                  <div class="live-progress"><div class="live-progress-bar" style="width:${pct}%;"></div></div>
+                </div>
+              `;
+            }).join('')}
+          </section>
+        `;
+      }
+
+      if (st.status === 'UP_NEXT' && st.items.length) {
+        return `
+          <section class="live-card upcoming">
+            <div class="live-header">
+              <span class="live-pill next">⏳ ${t.upNext}${st.diffMin ? ` · ${st.diffMin}${t.startsInMin}` : ''}</span>
+              <span class="live-clock">${st.kst.hhmm}</span>
+            </div>
+            ${st.items.map((s) => `
+              <div class="live-item next-item" onclick="openDetail('${s.id}')">
+                <div class="live-item-title">${s.title}</div>
+                <div class="live-item-meta">
+                  <span>🕒 ${t.days[s.day].date} ${s.start}–${s.end}</span>
+                  <span>📍 ${s.room}</span>
+                </div>
+              </div>
+            `).join('')}
+          </section>
+        `;
+      }
+
+      if (st.status === 'BEFORE') {
+        const first = st.items[0];
+        return `
+          <section class="live-card upcoming">
+            <div class="live-header">
+              <span class="live-pill dday">D-${st.dday} · ${t.beforeEvent}</span>
+              ${simBtnHtml}
+            </div>
+            <div class="live-item next-item" onclick="openDetail('${first.id}')">
+              <div class="live-item-title">${first.title}</div>
+              <div class="live-item-meta">
+                <span>🕒 ${t.days[first.day].date} ${first.start}–${first.end}</span>
+                <span>📍 ${first.room}</span>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      return `
+        <section class="live-card upcoming">
+          <div class="live-header">
+            <span class="live-pill dday">✓ ${t.afterEvent}</span>
+            ${simBtnHtml}
+          </div>
+          <div style="font-size:12.5px;color:#455A64;line-height:1.45;">${t.afterEventMsg}</div>
+        </section>
+      `;
+    }
+
+    // Auto-select today's conference day on first load if during APNM 2027
+    (function initDayByClock() {
+      const st = getLiveState();
+      if (st.status === 'LIVE' || st.status === 'UP_NEXT') {
+        selectedDay = st.day;
+        mySelectedDay = st.day;
+      }
+    })();
+
     function hasConflict(item, dayItems) {
       const s1 = toMin(item.start), e1 = toMin(item.end);
       return dayItems.some((o) => o.id !== item.id && s1 < toMin(o.end) && toMin(o.start) < e1);
@@ -1365,7 +1659,7 @@
       const t = T[lang];
       const main = document.getElementById('mainContent');
 
-      // HOME SCREEN — Minimal & Clean
+      // HOME SCREEN — Minimal & Clean + LIVE Now Card
       if (currentTab === 'home') {
         main.innerHTML = `
           <div class="home-wrap">
@@ -1374,6 +1668,8 @@
               <div class="home-hero-theme">From Rome V to Practice:<br/>New Concepts in DGBI</div>
               <div class="home-hero-meta">${t.homeMeta}</div>
             </section>
+
+            ${renderLiveWidget()}
 
             <!-- 3 Core Icon Tiles: Program, My Schedule, Info -->
             <section class="home-menu-grid">
@@ -1438,18 +1734,23 @@
           </div>
         ` : '';
 
+        const liveState = getLiveState();
+        const liveIdSet = new Set(liveState.status === 'LIVE' ? liveState.items.map((x) => x.id) : []);
+
         main.innerHTML = searchBanner + (list.length ? `
           <div class="session-list">
             ${list.map((s) => {
               const isSaved = savedIds.has(s.id);
+              const isLive = liveIdSet.has(s.id);
               const matchedTalks = isSearching
                 ? s.talks.filter((tk) => tk.toLowerCase().includes(q))
                 : [];
               const matchedChair = isSearching && s.chairs && s.chairs.toLowerCase().includes(q);
               return `
-                <article class="session-card tone-${s.tone} ${isSaved ? 'saved' : ''}" onclick="openDetail('${s.id}')">
+                <article class="session-card tone-${s.tone} ${isSaved ? 'saved' : ''} ${isLive ? 'is-live' : ''}" onclick="openDetail('${s.id}')">
                   <div class="card-top">
                     <div class="badges">
+                      ${isLive ? `<span class="live-inline-badge"><span class="live-dot"></span> ${t.liveNow}</span>` : ''}
                       ${isSearching ? `<span class="cat-badge" style="background:#1D2088;color:#FFF;border:none;">${t.days[s.day].date}</span>` : ''}
                       <span class="time-badge">${s.start}–${s.end}</span>
                       <span class="cat-badge">${s.category}</span>
@@ -1712,6 +2013,9 @@
 
     render();
     updateInstallBanner();
+    setInterval(() => {
+      if (currentTab === 'home' || currentTab === 'program') renderBodyOnly();
+    }, 60000);
   </script>
 </body>
 </html>
