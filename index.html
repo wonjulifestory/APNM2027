@@ -1286,7 +1286,7 @@
       document.querySelectorAll('.nav-btn').forEach((b) => b.classList.remove('active'));
       const navBtn = document.getElementById('nav-' + tab);
       if (navBtn) navBtn.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      window.scrollTo(0, 0);
       render();
     }
 
