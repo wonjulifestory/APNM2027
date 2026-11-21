@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>APNM 2027 — Program &amp; My Schedule</title>
+  <meta name="description" content="14th Asian Postgraduate Course on Neurogastroenterology & Motility (April 1–3, 2027, Paradise City, Incheon)" />
+  <meta name="theme-color" content="#008CD6" />
+
+  <!-- PWA & iOS Home Screen Meta -->
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" href="./assets/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="APNM 2027" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <style>
+    :root {
+      --apnm-indigo: #1D2088;
+      --apnm-indigo-2: #364EA2;
+      --apnm-blue: #008CD6;
+      --apnm-blue-soft: #EBF6FC;
+      --apnm-blue-table: #F2F9FD;
+      --apnm-blue-border: #D9EEF9;
+      --apnm-pink: #F16785;
+      --apnm-pink-soft: #FEF3F5;
+      --apnm-teal: #00ABBD;
+      --apnm-bronze: #8B5E30;
+      --apnm-charcoal: #263238;
+      --apnm-slate: #546E7A;
+      --apnm-border: #E4E8EC;
+      --apnm-bg: #F5F7F9;
+
+      /* Official Program at a Glance Pastel Blocks */
+      --pastel-sky: #E5F6FE;
+      --pastel-green: #EDF7ED;
+      --pastel-indigo: #E8F1FA;
+      --pastel-pink: #FDE8EF;
+      --pastel-yellow: #FFFDEB;
+      --pastel-orange: #FFF0E5;
+      --pastel-purple: #F3E9F6;
+      --pastel-gray: #EBECED;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: var(--apnm-bg);
+      color: var(--apnm-charcoal);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-shell {
+      max-width: 520px;
+      margin: 0 auto;
+      min-height: 100%;
+      background: var(--apnm-bg);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 0 32px rgba(29, 32, 136, 0.06);
+    }
+
+    /* Sticky Top Header matching apnm.kr */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--apnm-border);
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .brand-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px 10px;
+      gap: 10px;
+    }
+
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-date-pill {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--apnm-bronze);
+      background: #F8F4EF;
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .lang-btn {
+      border: 1.5px solid var(--apnm-blue);
+      background: #FFFFFF;
+      color: var(--apnm-blue);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .lang-btn:active {
+      background: var(--apnm-blue);
+      color: #FFFFFF;
+    }
+
+    /* Official APNM Blue Accent Strip */
+    .sub-bar {
+      background: linear-gradient(90deg, #1D2088 0%, #008CD6 100%);
+      color: #FFFFFF;
+      padding: 10px 16px 12px;
+    }
+
+    .sub-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .page-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .page-subtitle {
+      font-size: 11.5px;
+      opacity: 0.9;
+      margin-top: 2px;
+    }
+
+    .search-box {
+      margin-top: 10px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 9px 34px 9px 12px;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--apnm-charcoal);
+      outline: none;
+    }
+    .search-input::placeholder { color: #78909C; }
+    .search-clear {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      color: #78909C;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 4px;
+      display: none;
+    }
+    .search-clear.visible { display: block; }
+
+    /* Install Banner */
+    .install-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--apnm-pink-soft);
+      border-bottom: 1px solid #FAD3DC;
+      padding: 9px 14px;
+      font-size: 12px;
+      color: var(--apnm-charcoal);
+    }
+    .install-banner.show { display: flex; }
+    .install-btn {
+      background: var(--apnm-pink);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .install-close {
+      background: transparent;
+      border: none;
+      color: #78909C;
+      font-size: 15px;
+      padding: 2px 4px;
+      cursor: pointer;
+    }
+
+    /* Day Tabs matching Scientific Program sub02_02.php */
+    .day-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #F2F4F5;
+      border-bottom: 1px solid var(--apnm-border);
+    }
+    .day-tab {
+      border: none;
+      background: transparent;
+      padding: 10px 6px;
+      cursor: pointer;
+      text-align: center;
+      color: var(--apnm-slate);
+      border-bottom: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .day-tab.active {
+      background: #FFFFFF;
+      color: var(--apnm-indigo);
+      font-weight: 800;
+      border-bottom-color: var(--apnm-blue);
+    }
+    .day-tab-main { font-size: 13px; font-weight: 700; }
+    .day-tab-sub { font-size: 11px; margin-top: 2px; opacity: 0.85; }
+
+    /* Room Filter Chips */
+    .chip-row {
+      display: flex;
+      gap: 6px;
+      padding: 10px 14px;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--apnm-border);
+      overflow-x: auto;
+    }
+    .chip {
+      border: 1px solid #CFD8DC;
+      background: #FFFFFF;
+      color: var(--apnm-slate);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 999px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .chip.active {
+      background: var(--apnm-indigo);
+      border-color: var(--apnm-indigo);
+      color: #FFFFFF;
+    }
+
+    /* Main Content Area */
+    .main-content {
+      flex: 1;
+      padding: 14px 14px calc(86px + env(safe-area-inset-bottom));
+    }
+
+    /* Session Cards with Official Pastel Colors */
+    .session-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .session-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      border: 1px solid var(--apnm-border);
+      border-left: 5px solid var(--apnm-blue);
+      padding: 13px 14px;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      position: relative;
+    }
+    .session-card:active { transform: scale(0.99); }
+    .session-card.saved {
+      box-shadow: 0 3px 12px rgba(0, 140, 214, 0.14);
+      border-color: #95C5E9;
+    }
+
+    .tone-sky    { background: var(--pastel-sky);    border-left-color: #008CD6; }
+    .tone-green  { background: var(--pastel-green);  border-left-color: #2E7D32; }
+    .tone-indigo { background: var(--pastel-indigo); border-left-color: #364EA2; }
+    .tone-pink   { background: var(--pastel-pink);   border-left-color: #F16785; }
+    .tone-yellow { background: var(--pastel-yellow); border-left-color: #D4A017; }
+    .tone-orange { background: var(--pastel-orange); border-left-color: #E67E22; }
+    .tone-purple { background: var(--pastel-purple); border-left-color: #7E57C2; }
+    .tone-gray   { background: #FFFFFF;              border-left-color: #90A4AE; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .badges {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .time-badge {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--apnm-indigo);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cat-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--apnm-charcoal);
+      border: 1px solid rgba(38, 50, 56, 0.1);
+    }
+
+    .ai-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: var(--apnm-teal);
+      color: #FFFFFF;
+    }
+
+    .conflict-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: var(--apnm-pink);
+      color: #FFFFFF;
+    }
+
+    .star-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      color: #90A4AE;
+      font-size: 19px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    .star-btn.saved {
+      background: #FFF8E1;
+      color: #F59E0B;
+    }
+
+    .card-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #111827;
+      margin-top: 6px;
+      line-height: 1.35;
+    }
+
+    .card-sub {
+      font-size: 12.5px;
+      color: #455A64;
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    .card-footer {
+      margin-top: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #37474F;
+      font-weight: 600;
+    }
+    .card-more {
+      color: var(--apnm-blue);
+      font-weight: 700;
+    }
+
+    /* My Schedule Summary Strip & Timeline */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .summary-pill {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 12px;
+      padding: 7px 6px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .summary-pill.active {
+      background: #FFFFFF;
+      color: var(--apnm-indigo);
+    }
+    .summary-pill-day { font-size: 11px; font-weight: 600; opacity: 0.9; }
+    .summary-pill-num { font-size: 15px; font-weight: 800; margin-top: 1px; }
+
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      margin-left: 6px;
+      border-left: 2.5px solid #B3E5FC;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .timeline-item { position: relative; }
+    .timeline-dot {
+      position: absolute;
+      left: -27.5px;
+      top: 16px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--apnm-blue);
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 0 0 2px #B3E5FC;
+    }
+    .timeline-dot.conflict {
+      background: var(--apnm-pink);
+      box-shadow: 0 0 0 2px #FAD3DC;
+    }
+
+    .empty-state {
+      background: #FFFFFF;
+      border: 1px dashed #CFD8DC;
+      border-radius: 18px;
+      padding: 36px 20px;
+      text-align: center;
+      color: var(--apnm-slate);
+    }
+    .empty-icon { font-size: 36px; margin-bottom: 8px; }
+    .empty-text { font-size: 13.5px; line-height: 1.5; white-space: pre-line; }
+    .primary-btn {
+      margin-top: 14px;
+      background: var(--apnm-blue);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Venue Cards */
+    .venue-card {
+      background: #FFFFFF;
+      border-radius: 18px;
+      border: 1px solid var(--apnm-border);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .venue-hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .venue-body { padding: 15px 16px; }
+    .venue-kicker {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--apnm-bronze);
+      letter-spacing: 0.04em;
+    }
+    .venue-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--apnm-indigo);
+      margin-top: 3px;
+    }
+    .venue-addr {
+      font-size: 13px;
+      color: var(--apnm-slate);
+      margin-top: 5px;
+      line-height: 1.45;
+    }
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-decoration: none;
+      border: none;
+      border-radius: 11px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .action-blue { background: var(--apnm-blue); color: #FFFFFF; }
+    .action-soft { background: var(--apnm-blue-soft); color: var(--apnm-indigo); }
+    .action-outline { background: #F5F7F9; color: var(--apnm-charcoal); border: 1px solid var(--apnm-border); }
+
+    .section-heading {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--apnm-indigo);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hall-box {
+      background: var(--apnm-blue-table);
+      border: 1px solid var(--apnm-blue-border);
+      border-radius: 12px;
+      padding: 11px 12px;
+      margin-bottom: 8px;
+    }
+    .hall-box:last-child { margin-bottom: 0; }
+    .hall-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--apnm-indigo-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .hall-desc {
+      font-size: 12.5px;
+      color: #455A64;
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 520px;
+      background: #FFFFFF;
+      border-top: 1px solid var(--apnm-border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 7px 8px calc(8px + env(safe-area-inset-bottom));
+      z-index: 40;
+    }
+    .nav-btn {
+      border: none;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      color: #607D8B;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 2px 0;
+    }
+    .nav-pill {
+      padding: 3px 16px;
+      border-radius: 999px;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-btn.active {
+      color: var(--apnm-indigo);
+      font-weight: 800;
+    }
+    .nav-btn.active .nav-pill {
+      background: var(--apnm-blue-soft);
+      color: var(--apnm-blue);
+    }
+    .nav-count {
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--apnm-pink);
+      color: #FFFFFF;
+      padding: 1px 6px;
+      border-radius: 999px;
+    }
+
+    /* Detail Bottom Sheet matching Scientific Program table styling */
+    .sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      z-index: 60;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .sheet-backdrop.open { display: flex; }
+    .sheet {
+      width: 100%;
+      max-width: 520px;
+      max-height: 85vh;
+      background: #FFFFFF;
+      border-radius: 24px 24px 0 0;
+      padding: 12px 18px calc(20px + env(safe-area-inset-bottom));
+      overflow-y: auto;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .sheet-handle {
+      width: 40px;
+      height: 4px;
+      border-radius: 999px;
+      background: #CFD8DC;
+      margin: 0 auto 12px;
+    }
+    .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      border-top: 2px solid var(--apnm-blue-border);
+      font-size: 12.5px;
+    }
+    .detail-table th, .detail-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #E4E4E4;
+      text-align: left;
+      vertical-align: top;
+    }
+    .detail-table th {
+      width: 88px;
+      background: var(--apnm-blue-table);
+      color: var(--apnm-indigo-2);
+      font-weight: 700;
+    }
+    .talk-list {
+      margin: 0;
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sheet-cta {
+      width: 100%;
+      margin-top: 16px;
+      padding: 13px;
+      border-radius: 14px;
+      border: none;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .sheet-cta.add { background: var(--apnm-blue); color: #FFFFFF; }
+    .sheet-cta.remove { background: var(--apnm-pink-soft); color: var(--apnm-pink); border: 1.5px solid #FAD3DC; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: calc(82px + env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--apnm-charcoal);
+      color: #FFFFFF;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 80;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sticky Header -->
+    <header class="top-header">
+      <div class="brand-bar">
+        <div class="brand-left">
+          <img src="./assets/logo_apnm2027.png" alt="APNM 2027" class="brand-logo" />
+          <span class="brand-date-pill">Apr 1–3, 2027</span>
+        </div>
+        <button id="langToggleBtn" class="lang-btn" onclick="toggleLang()">EN</button>
+      </div>
+
+      <!-- Smart Install Guide (auto-hidden when already installed) -->
+      <div id="installBanner" class="install-banner">
+        <span id="installMsg"></span>
+        <div style="display:flex;align-items:center;gap:4px;">
+          <button id="installActionBtn" class="install-btn" style="display:none;" onclick="triggerInstall()"></button>
+          <button class="install-close" onclick="dismissInstall()" aria-label="Close">✕</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Sub-Header -->
+      <div class="sub-bar" id="subHeader"></div>
+
+      <!-- Dynamic Day Tabs & Filters -->
+      <div id="dayTabsContainer"></div>
+      <div id="filterContainer"></div>
+    </header>
+
+    <!-- Main Body -->
+    <main class="main-content" id="mainContent"></main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <button class="nav-btn active" id="nav-program" onclick="switchTab('program')">
+        <span class="nav-pill">📅</span>
+        <span data-i18n="navProgram">프로그램</span>
+      </button>
+      <button class="nav-btn" id="nav-my" onclick="switchTab('my')">
+        <span class="nav-pill">★ <span class="nav-count" id="savedCountBadge">0</span></span>
+        <span data-i18n="navMy">내 스케줄</span>
+      </button>
+      <button class="nav-btn" id="nav-venue" onclick="switchTab('venue')">
+        <span class="nav-pill">📍</span>
+        <span data-i18n="navVenue">장소</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Session Detail Bottom Sheet -->
+  <div class="sheet-backdrop" id="detailBackdrop" onclick="closeDetail(event)">
+    <div class="sheet" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // --- Persistent Local State (No Login Required) ---
+    const STORAGE_KEY_SAVED = 'apnm2027_saved_sessions_v1';
+    const STORAGE_KEY_LANG = 'apnm2027_lang_v1';
+
+    let lang = localStorage.getItem(STORAGE_KEY_LANG) || 'ko';
+    let currentTab = 'program'; // 'program' | 'my' | 'venue'
+    let selectedDay = 2;        // Day 2 default (main scientific sessions)
+    let mySelectedDay = 2;
+    let roomFilter = 'ALL';
+    let searchQuery = '';
+    let deferredPrompt = null;
+
+    let savedIds = new Set();
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY_SAVED);
+      if (raw) savedIds = new Set(JSON.parse(raw));
+    } catch (_) {}
+
+    function persistSaved() {
+      try { localStorage.setItem(STORAGE_KEY_SAVED, JSON.stringify([...savedIds])); } catch (_) {}
+    }
+
+    // --- Bilingual Strings ---
+    const T = {
+      ko: {
+        navProgram: '프로그램',
+        navMy: '내 스케줄',
+        navVenue: '장소',
+        programTitle: '학술 프로그램',
+        programSub: 'From Rome V to Practice: New Concepts in DGBI',
+        myTitle: '내 스케줄',
+        mySub: '프로그램에서 ★을 누르면 자동으로 정리됩니다',
+        venueTitle: '장소 및 교통 안내',
+        venueSub: '인천 파라다이스시티 · 2027. 4. 1(목) ~ 4. 3(토)',
+        searchPlaceholder: '세션, 연자, 주제 검색 (예: Rome V, IBS, GERD)',
+        allRooms: '전체 강의실',
+        aiBadge: '한·영 AI 통역',
+        conflict: '시간 겹침',
+        details: '상세 ›',
+        days: {
+          1: { short: 'Day 1', date: '4/1 (목)' },
+          2: { short: 'Day 2', date: '4/2 (금)' },
+          3: { short: 'Day 3', date: '4/3 (토)' }
+        },
+        savedUnit: '개',
+        emptyMy: '이 날짜에 선택한 세션이 아직 없습니다.\n프로그램 탭에서 관심 세션의 ★ 버튼을 눌러 담아보세요!',
+        goProgram: '프로그램 보러가기',
+        noSearch: '검색 조건에 맞는 세션이 없습니다.',
+        thTime: '일시',
+        thRoom: '장소',
+        thLang: '통역',
+        thChairs: '좌장',
+        thTalks: '세부 강연',
+        addToMy: '★ 내 스케줄에 담기',
+        removeFromMy: '내 스케줄에서 제외',
+        toastAdded: '내 스케줄에 추가되었습니다',
+        toastRemoved: '내 스케줄에서 제외되었습니다',
+        toastCopied: '주소가 복사되었습니다',
+        iosInstall: '📲 아이폰 설치: Safari 하단 공유(↑) → "홈 화면에 추가"',
+        androidInstall: '📲 홈 화면에 APNM 2027 앱으로 바로 설치하세요',
+        installBtn: '앱 설치',
+        venueKicker: 'CONGRESS VENUE · 공식 행사장',
+        venueName: '인천 파라다이스시티 (Paradise City)',
+        venueAddr: '인천광역시 중구 영종해안남로 321번길 186',
+        openGoogleMap: '구글 지도',
+        openNaverMap: '네이버 지도',
+        openKakaoMap: '카카오맵',
+        copyAddr: '주소 복사',
+        hallsTitle: '층별 강의실 안내 (Hotel Paradise 1F)',
+        grandDesc: '4/2(금)~4/3(토) 메인 학술 세션 (Session 1~6, P-CAB Across Asia, PG Course 1·2, Opening Ceremony)',
+        emeraldDesc: '4/1(목) Asian Young Investigator, JNM Lectureship, Welcome Reception · 4/2(금) Gala Dinner · 4/3(토) Nursing Session',
+        shuttleTitle: '인천공항 무료 셔틀버스',
+        shuttleInterval: '약 20분 간격',
+        shuttleT1: '제1여객터미널 (T1): 1층 3C / 14C 승강장',
+        shuttleT2: '제2여객터미널 (T2): 1층 1A 승강장',
+        shuttleDrop: '파라다이스시티 승하차: 호텔 파라다이스 B1층',
+        officialTitle: '공식 홈페이지 및 사무국',
+        openWeb: 'apnm.kr 열기 ↗',
+        emailSec: '사무국 메일'
+      },
+      en: {
+        navProgram: 'Program',
+        navMy: 'My Schedule',
+        navVenue: 'Venue',
+        programTitle: 'Scientific Program',
+        programSub: 'From Rome V to Practice: New Concepts in DGBI',
+        myTitle: 'My Schedule',
+        mySub: 'Tap ★ on any session to build your personal timeline',
+        venueTitle: 'Venue & Access',
+        venueSub: 'Paradise City, Incheon · April 1–3, 2027',
+        searchPlaceholder: 'Search session, speaker, topic (e.g. Rome V, IBS)',
+        allRooms: 'All Rooms',
+        aiBadge: 'AI KR↔EN',
+        conflict: 'Time Conflict',
+        details: 'Details ›',
+        days: {
+          1: { short: 'Day 1', date: 'Apr 1 (Thu)' },
+          2: { short: 'Day 2', date: 'Apr 2 (Fri)' },
+          3: { short: 'Day 3', date: 'Apr 3 (Sat)' }
+        },
+        savedUnit: ' saved',
+        emptyMy: 'No sessions selected for this day yet.\nTap ★ on any session in Program to add it automatically!',
+        goProgram: 'Browse Program',
+        noSearch: 'No sessions match your filter.',
+        thTime: 'Date & Time',
+        thRoom: 'Room',
+        thLang: 'Language',
+        thChairs: 'Chairs',
+        thTalks: 'Lectures',
+        addToMy: '★ Add to My Schedule',
+        removeFromMy: 'Remove from My Schedule',
+        toastAdded: 'Added to My Schedule',
+        toastRemoved: 'Removed from My Schedule',
+        toastCopied: 'Address copied to clipboard',
+        iosInstall: '📲 iPhone Install: Tap Share (↑) → "Add to Home Screen"',
+        androidInstall: '📲 Install APNM 2027 directly to your Home Screen',
+        installBtn: 'Install',
+        venueKicker: 'CONGRESS VENUE',
+        venueName: 'Paradise City, Incheon',
+        venueAddr: '186, Yeongjonghaeannam-ro 321-gil, Jung-gu, Incheon, Korea',
+        openGoogleMap: 'Google Maps',
+        openNaverMap: 'Naver Map',
+        openKakaoMap: 'KakaoMap',
+        copyAddr: 'Copy Address',
+        hallsTitle: 'Convention Halls (Hotel Paradise 1F)',
+        grandDesc: 'Apr 2–3 Main Sessions (Sessions 1–6, P-CAB Across Asia, PG Courses 1 & 2, Opening Ceremony)',
+        emeraldDesc: 'Apr 1 Young Investigator, JNM Lectureship, Welcome Reception · Apr 2 Gala Dinner · Apr 3 Nursing Session',
+        shuttleTitle: 'Free Incheon Airport Shuttle',
+        shuttleInterval: 'Every ~20 min',
+        shuttleT1: 'Terminal 1: 1F Gate 3C / 14C',
+        shuttleT2: 'Terminal 2: 1F Gate 1A',
+        shuttleDrop: 'Resort Stop: Hotel Paradise B1F Entrance',
+        officialTitle: 'Official Website & Secretariat',
+        openWeb: 'Visit apnm.kr ↗',
+        emailSec: 'Email Secretariat'
+      }
+    };
+
+    // --- Official APNM 2027 Program Data (Matched to apnm.kr colors) ---
+    const SESSIONS = [
+      // DAY 1 — April 1 (Thu)
+      {
+        id: 'd1-reg', day: 1, start: '13:00', end: '14:00', tone: 'gray',
+        category: 'Registration',
+        title: 'On-site Registration',
+        subtitle: 'Badge pick-up and congress kit distribution',
+        room: 'Emerald Foyer (1F)', roomKey: 'EMERALD', ai: false,
+        chairs: '', talks: ['Registration desk opens at 13:00']
+      },
+      {
+        id: 'd1-yi', day: 1, start: '14:00', end: '15:40', tone: 'green',
+        category: 'Young Investigator',
+        title: "Asian Young Investigator's Session",
+        subtitle: "Asia's rising stars: Advances in neurogastroenterology research",
+        room: 'Emerald A+B (1F)', roomKey: 'EMERALD', ai: false,
+        chairs: 'ANMA & KSNM Organizing Committee',
+        talks: ['Selected oral presentations by rising neurogastroenterology researchers across Asia']
+      },
+      {
+        id: 'd1-jnm', day: 1, start: '16:00', end: '17:30', tone: 'indigo',
+        category: 'ANMA–JNM Joint',
+        title: 'JNM Lectureship',
+        subtitle: 'Journal of Neurogastroenterology and Motility Joint Session',
+        room: 'Emerald A+B (1F)', roomKey: 'EMERALD', ai: false,
+        chairs: 'JNM Editorial Board',
+        talks: ['Keynote lectures & milestone highlights from JNM']
+      },
+      {
+        id: 'd1-welcome', day: 1, start: '18:10', end: '20:00', tone: 'pink',
+        category: 'Social Event',
+        title: 'Welcome Reception',
+        subtitle: 'Opening networking reception for all registered participants',
+        room: 'Emerald (1F)', roomKey: 'EMERALD', ai: false,
+        chairs: '', talks: ['Welcome address & international networking dinner']
+      },
+
+      // DAY 2 — April 2 (Fri)
+      {
+        id: 'd2-open', day: 2, start: '09:00', end: '10:20', tone: 'green',
+        category: 'Opening & Plenary',
+        title: 'Opening Ceremony & KSNM Plenary / Oral Presentations',
+        subtitle: 'Opening Ceremony (09:00–09:40) & KSNM Plenary Session (09:40–10:20)',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'KSNM President & Program Committee',
+        talks: ['Opening Ceremony & Presidential Address (09:00–09:40)', 'KSNM Plenary Session & Oral Presentations (09:40–10:20)']
+      },
+      {
+        id: 'd2-s1', day: 2, start: '10:45', end: '12:00', tone: 'sky',
+        category: 'Session 1',
+        title: 'GI motility testing in the era of precision medicine',
+        subtitle: 'From physiology to clinical decision-making',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'Kwang Jae Lee (Ajou Univ., Korea), Uday Ghoshal (Apollo Hospitals, India)',
+        talks: [
+          'Decoding esophageal symptoms: A practical roadmap to diagnosis — Ronnie Fass (Case Western Reserve Univ., USA)',
+          'Navigating gastroduodenal symptoms: From clinical clues to mechanisms',
+          'Making sense of colorectal symptoms: An evidence-based approach — Uday Ghoshal (India)'
+        ]
+      },
+      {
+        id: 'd2-lunch1', day: 2, start: '12:00', end: '13:00', tone: 'yellow',
+        category: 'Luncheon',
+        title: 'Luncheon Symposium 1',
+        subtitle: 'Sponsored lunch & clinical update symposium',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: '', talks: ['Sponsored Luncheon Symposium (details updated on apnm.kr)']
+      },
+      {
+        id: 'd2-s2', day: 2, start: '13:00', end: '14:15', tone: 'sky',
+        category: 'Session 2',
+        title: 'Rome V unveiled: Redefining DGBI',
+        subtitle: 'Redefining disorders of gut–brain interaction',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'Sang Kil Lee (Yonsei Univ., Korea), Nicholas Talley (Univ. of Newcastle, Australia)',
+        talks: [
+          'Functional esophageal disorders in the Rome V era — Prakash Gyawali (Washington Univ., USA)',
+          "Revisiting gastroduodenal disorders: What's new in Rome V? — Nicholas J. Talley (Australia)",
+          'Functional bowel disorders: Evolution from Rome IV to Rome V — Magnus Simrén (Univ. of Gothenburg, Sweden)'
+        ]
+      },
+      {
+        id: 'd2-s3', day: 2, start: '14:15', end: '15:30', tone: 'sky',
+        category: 'Session 3',
+        title: 'Rethinking IBS: From complexity to clarity',
+        subtitle: 'Overlap disorders, microbiome, food, and refractory IBS',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'Magnus Simrén (Univ. of Gothenburg, Sweden)',
+        talks: [
+          'IBS and its overlap disorders: Why are symptoms so complex? — Edoardo Vincenzo Savarino (Univ. of Padua, Italy)',
+          'What drives IBS symptoms? Microbiome, food, and the brain-gut axis — Magnus Simrén (Sweden)',
+          'Management of refractory IBS: Current and emerging therapies — Kee Huat Chuah (Univ. of Malaya, Malaysia)'
+        ]
+      },
+      {
+        id: 'd2-poster', day: 2, start: '15:30', end: '16:00', tone: 'gray',
+        category: 'Poster & Break',
+        title: 'Coffee Break & Poster Session',
+        subtitle: 'Poster viewing & discussion with presenters',
+        room: 'Grand Ballroom Foyer (1F)', roomKey: 'GRAND', ai: false,
+        chairs: '', talks: ['APNM 2027 Poster Exhibition & Coffee Break']
+      },
+      {
+        id: 'd2-s4', day: 2, start: '16:00', end: '17:15', tone: 'sky',
+        category: 'Session 4',
+        title: 'Constipation revisited: From phenotypes to personalized care',
+        subtitle: 'Phenotyping chronic constipation & tailored therapy',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'APNM Faculty',
+        talks: ['Phenotyping and diagnostic evaluation of chronic constipation', 'Personalized pharmacological & biofeedback management']
+      },
+      {
+        id: 'd2-gala', day: 2, start: '18:10', end: '20:00', tone: 'pink',
+        category: 'Invited Only',
+        title: 'Gala Dinner',
+        subtitle: 'By invitation only — Emerald Ballroom',
+        room: 'Emerald (1F)', roomKey: 'EMERALD', ai: false,
+        chairs: '', talks: ['APNM 2027 Gala Dinner (Invited Guests Only)']
+      },
+
+      // DAY 3 — April 3 (Sat)
+      {
+        id: 'd3-s5', day: 3, start: '09:00', end: '10:15', tone: 'sky',
+        category: 'Session 5',
+        title: 'GERD reimagined: From Lyon 2.0 to Personalized care',
+        subtitle: 'Modern diagnostic criteria & tailored GERD management',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'APNM Faculty',
+        talks: ['Applying Lyon 2.0 consensus in daily clinical practice', 'Personalized therapy for refractory GERD phenotypes']
+      },
+      {
+        id: 'd3-nursing', day: 3, start: '09:00', end: '11:30', tone: 'orange',
+        category: 'Nursing Session',
+        title: 'Nursing & Motility Technician Session',
+        subtitle: 'Practical clinical guide for motility nurses & technicians',
+        room: 'Emerald A+B (1F)', roomKey: 'EMERALD', ai: false,
+        chairs: 'KSNM Nursing Committee',
+        talks: ['High-resolution manometry & pH-impedance best practices', 'Patient care & counseling in DGBI clinics']
+      },
+      {
+        id: 'd3-s6', day: 3, start: '10:30', end: '11:45', tone: 'sky',
+        category: 'Session 6',
+        title: 'Functional dyspepsia and gastroduodenal disorders',
+        subtitle: 'From mechanisms to precision care',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'APNM Faculty',
+        talks: ['Pathophysiology & duodenal eosinophilia in FD', 'Precision care strategies for gastroduodenal DGBI']
+      },
+      {
+        id: 'd3-lunch2', day: 3, start: '11:45', end: '13:00', tone: 'yellow',
+        category: 'AGM & Luncheon',
+        title: 'Annual General Meeting & Luncheon Symposium 2',
+        subtitle: 'KSNM Annual General Meeting & Sponsored Luncheon',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: '', talks: ['KSNM Annual General Meeting', 'Luncheon Symposium 2']
+      },
+      {
+        id: 'd3-pcab', day: 3, start: '13:00', end: '14:30', tone: 'sky',
+        category: 'Special Session',
+        title: 'P-CAB Across Asia',
+        subtitle: 'Real-world experience and future perspectives',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'Asian Experts Panel',
+        talks: ['Real-world Asian clinical experience with P-CABs', 'Future perspectives in acid-related & functional GI disorders']
+      },
+      {
+        id: 'd3-pg1', day: 3, start: '14:30', end: '15:50', tone: 'purple',
+        category: 'PG Course 1',
+        title: 'KSNM Guideline Update 2027',
+        subtitle: 'Translating evidence into practice',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'KSNM Guideline Committee',
+        talks: ['Key updates from the 2027 KSNM Clinical Practice Guidelines']
+      },
+      {
+        id: 'd3-pg2', day: 3, start: '16:00', end: '17:00', tone: 'purple',
+        category: 'PG Course 2',
+        title: 'The difficult DGBI clinic',
+        subtitle: 'Expert strategies for real-world practice',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
+        chairs: 'KSNM & International Panel',
+        talks: ['Real-world case discussions and expert strategies for challenging DGBI patients']
+      }
+    ];
+
+    function toMin(hhmm) {
+      const [h, m] = hhmm.split(':').map(Number);
+      return h * 60 + m;
+    }
+
+    function hasConflict(item, dayItems) {
+      const s1 = toMin(item.start), e1 = toMin(item.end);
+      return dayItems.some((o) => o.id !== item.id && s1 < toMin(o.end) && toMin(o.start) < e1);
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
+    }
+
+    function toggleLang() {
+      lang = lang === 'ko' ? 'en' : 'ko';
+      try { localStorage.setItem(STORAGE_KEY_LANG, lang); } catch (_) {}
+      render();
+      updateInstallBanner();
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.nav-btn').forEach((b) => b.classList.remove('active'));
+      document.getElementById('nav-' + tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      render();
+    }
+
+    function toggleSave(id, ev) {
+      if (ev) ev.stopPropagation();
+      const t = T[lang];
+      if (savedIds.has(id)) {
+        savedIds.delete(id);
+        showToast(t.toastRemoved);
+      } else {
+        savedIds.add(id);
+        showToast(t.toastAdded);
+      }
+      persistSaved();
+      render();
+    }
+
+    function openDetail(id) {
+      const s = SESSIONS.find((x) => x.id === id);
+      if (!s) return;
+      const t = T[lang];
+      const isSaved = savedIds.has(s.id);
+      document.getElementById('detailContent').innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <div class="badges">
+            <span class="cat-badge">${s.category}</span>
+            ${s.ai ? `<span class="ai-badge">${t.aiBadge}</span>` : ''}
+          </div>
+          <button onclick="closeDetail()" style="border:none;background:#F1F5F9;color:#475569;border-radius:999px;width:28px;height:28px;font-weight:700;cursor:pointer;">✕</button>
+        </div>
+        <h2 style="font-size:17px;font-weight:800;color:#1D2088;margin:10px 0 4px;line-height:1.35;">${s.title}</h2>
+        <p style="font-size:13px;color:#546E7A;margin:0;line-height:1.4;">${s.subtitle}</p>
+        <table class="detail-table">
+          <tr><th>${t.thTime}</th><td><b>${t.days[s.day].date}</b> · ${s.start} – ${s.end}</td></tr>
+          <tr><th>${t.thRoom}</th><td>📍 ${s.room}</td></tr>
+          ${s.ai ? `<tr><th>${t.thLang}</th><td>English + ${t.aiBadge}</td></tr>` : ''}
+          ${s.chairs ? `<tr><th>${t.thChairs}</th><td>${s.chairs}</td></tr>` : ''}
+          <tr>
+            <th>${t.thTalks}</th>
+            <td>
+              <ul class="talk-list">
+                ${s.talks.map((tk) => `<li>${tk}</li>`).join('')}
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <button class="sheet-cta ${isSaved ? 'remove' : 'add'}" onclick="toggleSave('${s.id}'); openDetail('${s.id}');">
+          ${isSaved ? t.removeFromMy : t.addToMy}
+        </button>
+      `;
+      document.getElementById('detailBackdrop').classList.add('open');
+    }
+
+    function closeDetail(ev) {
+      if (ev && ev.target !== document.getElementById('detailBackdrop')) return;
+      document.getElementById('detailBackdrop').classList.remove('open');
+    }
+
+    function setSearch(val) {
+      searchQuery = val;
+      const clr = document.getElementById('searchClearBtn');
+      if (clr) clr.classList.toggle('visible', !!val);
+      renderBodyOnly();
+    }
+
+    function clearSearch() {
+      searchQuery = '';
+      const inp = document.getElementById('programSearchInput');
+      if (inp) inp.value = '';
+      const clr = document.getElementById('searchClearBtn');
+      if (clr) clr.classList.remove('visible');
+      renderBodyOnly();
+    }
+
+    function copyAddress() {
+      const addr = T[lang].venueAddr;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addr).then(() => showToast(T[lang].toastCopied));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = addr;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(T[lang].toastCopied);
+      }
+    }
+
+    function renderDayTabsHTML(activeDay, handlerName, showCounts) {
+      const t = T[lang];
+      return `
+        <div class="day-tabs">
+          ${[1, 2, 3].map((d) => {
+            const cnt = SESSIONS.filter((s) => s.day === d && savedIds.has(s.id)).length;
+            return `
+              <button class="day-tab ${d === activeDay ? 'active' : ''}" onclick="${handlerName}(${d})">
+                <div class="day-tab-main">${t.days[d].short}${showCounts ? ` (${cnt})` : ''}</div>
+                <div class="day-tab-sub">${t.days[d].date}</div>
+              </button>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function setProgramDay(d) { selectedDay = d; render(); }
+    function setMyDay(d) { mySelectedDay = d; render(); }
+    function setRoomFilter(r) { roomFilter = r; render(); }
+
+    function renderBodyOnly() {
+      const t = T[lang];
+      const main = document.getElementById('mainContent');
+
+      if (currentTab === 'program') {
+        const q = searchQuery.trim().toLowerCase();
+        const list = SESSIONS.filter((s) => {
+          if (s.day !== selectedDay) return false;
+          if (roomFilter !== 'ALL' && s.roomKey !== roomFilter) return false;
+          if (q) {
+            const hay = (s.title + ' ' + s.subtitle + ' ' + s.category + ' ' + s.chairs + ' ' + s.talks.join(' ')).toLowerCase();
+            if (!hay.includes(q)) return false;
+          }
+          return true;
+        });
+
+        main.innerHTML = list.length ? `
+          <div class="session-list">
+            ${list.map((s) => {
+              const isSaved = savedIds.has(s.id);
+              return `
+                <article class="session-card tone-${s.tone} ${isSaved ? 'saved' : ''}" onclick="openDetail('${s.id}')">
+                  <div class="card-top">
+                    <div class="badges">
+                      <span class="time-badge">${s.start}–${s.end}</span>
+                      <span class="cat-badge">${s.category}</span>
+                      ${s.ai ? `<span class="ai-badge">${t.aiBadge}</span>` : ''}
+                    </div>
+                    <button class="star-btn ${isSaved ? 'saved' : ''}" onclick="toggleSave('${s.id}', event)" aria-label="Bookmark">
+                      ${isSaved ? '★' : '☆'}
+                    </button>
+                  </div>
+                  <div class="card-title">${s.title}</div>
+                  <div class="card-sub">${s.subtitle}</div>
+                  <div class="card-footer">
+                    <span>📍 ${s.room}</span>
+                    <span class="card-more">${t.details}</span>
+                  </div>
+                </article>
+              `;
+            }).join('')}
+          </div>
+        ` : `<div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-text">${t.noSearch}</div></div>`;
+        return;
+      }
+
+      if (currentTab === 'my') {
+        const dayItems = SESSIONS
+          .filter((s) => s.day === mySelectedDay && savedIds.has(s.id))
+          .sort((a, b) => toMin(a.start) - toMin(b.start));
+
+        if (!dayItems.length) {
+          main.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">☆</div>
+              <div class="empty-text">${t.emptyMy}</div>
+              <button class="primary-btn" onclick="selectedDay=${mySelectedDay}; switchTab('program');">${t.goProgram}</button>
+            </div>
+          `;
+          return;
+        }
+
+        main.innerHTML = `
+          <div class="timeline">
+            ${dayItems.map((s) => {
+              const conflict = hasConflict(s, dayItems);
+              return `
+                <div class="timeline-item">
+                  <div class="timeline-dot ${conflict ? 'conflict' : ''}"></div>
+                  <article class="session-card tone-${s.tone}" onclick="openDetail('${s.id}')">
+                    <div class="card-top">
+                      <div class="badges">
+                        <span class="time-badge">${s.start} – ${s.end}</span>
+                        <span class="cat-badge">${s.category}</span>
+                        ${conflict ? `<span class="conflict-badge">⚠ ${t.conflict}</span>` : ''}
+                      </div>
+                      <button class="star-btn saved" onclick="toggleSave('${s.id}', event)" aria-label="Remove">★</button>
+                    </div>
+                    <div class="card-title">${s.title}</div>
+                    <div class="card-footer">
+                      <span>📍 ${s.room}</span>
+                      ${s.ai ? `<span class="ai-badge">${t.aiBadge}</span>` : `<span class="card-more">${t.details}</span>`}
+                    </div>
+                  </article>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+        return;
+      }
+
+      // VENUE TAB
+      main.innerHTML = `
+        <section class="venue-card">
+          <img src="./assets/venue_banner.png" alt="Paradise City Incheon" class="venue-hero-img" />
+          <div class="venue-body">
+            <div class="venue-kicker">${t.venueKicker}</div>
+            <div class="venue-name">${t.venueName}</div>
+            <div class="venue-addr">${t.venueAddr}</div>
+            <div class="btn-grid">
+              <a class="action-btn action-blue" target="_blank" rel="noopener"
+                 href="https://maps.google.com/?q=Paradise+City+Incheon+Korea">🗺 ${t.openGoogleMap}</a>
+              <button class="action-btn action-soft" onclick="copyAddress()">📋 ${t.copyAddr}</button>
+              <a class="action-btn action-outline" target="_blank" rel="noopener"
+                 href="https://map.naver.com/p/search/%ED%8C%8C%EB%9D%BC%EB%8B%A4%EC%9D%B4%EC%8A%A4%EC%8B%9C%ED%8B%B0">🟢 ${t.openNaverMap}</a>
+              <a class="action-btn action-outline" target="_blank" rel="noopener"
+                 href="https://map.kakao.com/?q=%ED%8C%8C%EB%9D%BC%EB%8B%A4%EC%9D%B4%EC%8A%A4%EC%8B%9C%ED%8B%B0">🟡 ${t.openKakaoMap}</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="venue-card">
+          <div class="venue-body">
+            <div class="section-heading"><span>🏛 ${t.hallsTitle}</span></div>
+            <div class="hall-box">
+              <div class="hall-title">
+                <span>Grand Ballroom B+C (1F)</span>
+                <span class="ai-badge">${t.aiBadge}</span>
+              </div>
+              <div class="hall-desc">${t.grandDesc}</div>
+            </div>
+            <div class="hall-box">
+              <div class="hall-title"><span>Emerald A+B (1F)</span></div>
+              <div class="hall-desc">${t.emeraldDesc}</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="venue-card">
+          <div class="venue-body">
+            <div class="section-heading">
+              <span>🚌 ${t.shuttleTitle}</span>
+              <span class="ai-badge">${t.shuttleInterval}</span>
+            </div>
+            <div class="hall-desc" style="margin-top:0;line-height:1.7;">
+              <div>• <b>${t.shuttleT1}</b></div>
+              <div>• <b>${t.shuttleT2}</b></div>
+              <div>• ${t.shuttleDrop}</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="venue-card">
+          <div class="venue-body">
+            <div class="section-heading"><span>🌐 ${t.officialTitle}</span></div>
+            <div class="btn-grid" style="margin-top:0;">
+              <a class="action-btn action-blue" target="_blank" rel="noopener" href="https://apnm.kr">${t.openWeb}</a>
+              <a class="action-btn action-soft" href="mailto:info@apnm.kr">✉ ${t.emailSec}</a>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function render() {
+      const t = T[lang];
+      document.documentElement.lang = lang;
+      document.getElementById('langToggleBtn').textContent = lang === 'ko' ? 'EN' : '한국어';
+      document.getElementById('savedCountBadge').textContent = savedIds.size;
+
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+      });
+
+      const subHeader = document.getElementById('subHeader');
+      const dayTabsEl = document.getElementById('dayTabsContainer');
+      const filterEl = document.getElementById('filterContainer');
+
+      if (currentTab === 'program') {
+        subHeader.innerHTML = `
+          <div class="sub-bar-row">
+            <div>
+              <div class="page-title">${t.programTitle}</div>
+              <div class="page-subtitle">${t.programSub}</div>
+            </div>
+          </div>
+          <div class="search-box">
+            <input id="programSearchInput" class="search-input" type="search"
+              placeholder="${t.searchPlaceholder}" value="${searchQuery.replace(/"/g, '&quot;')}"
+              oninput="setSearch(this.value)" />
+            <button id="searchClearBtn" class="search-clear ${searchQuery ? 'visible' : ''}" onclick="clearSearch()">✕</button>
+          </div>
+        `;
+        dayTabsEl.innerHTML = renderDayTabsHTML(selectedDay, 'setProgramDay', false);
+        filterEl.innerHTML = `
+          <div class="chip-row">
+            <button class="chip ${roomFilter === 'ALL' ? 'active' : ''}" onclick="setRoomFilter('ALL')">${t.allRooms}</button>
+            <button class="chip ${roomFilter === 'GRAND' ? 'active' : ''}" onclick="setRoomFilter('GRAND')">Grand Ballroom B+C</button>
+            <button class="chip ${roomFilter === 'EMERALD' ? 'active' : ''}" onclick="setRoomFilter('EMERALD')">Emerald A+B</button>
+          </div>
+        `;
+      } else if (currentTab === 'my') {
+        subHeader.innerHTML = `
+          <div class="page-title">${t.myTitle}</div>
+          <div class="page-subtitle">${t.mySub}</div>
+          <div class="summary-grid">
+            ${[1, 2, 3].map((d) => {
+              const cnt = SESSIONS.filter((s) => s.day === d && savedIds.has(s.id)).length;
+              return `
+                <div class="summary-pill ${mySelectedDay === d ? 'active' : ''}" onclick="setMyDay(${d})">
+                  <div class="summary-pill-day">${t.days[d].short}</div>
+                  <div class="summary-pill-num">${cnt}${t.savedUnit}</div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+        dayTabsEl.innerHTML = renderDayTabsHTML(mySelectedDay, 'setMyDay', true);
+        filterEl.innerHTML = '';
+      } else {
+        subHeader.innerHTML = `
+          <div class="page-title">${t.venueTitle}</div>
+          <div class="page-subtitle">${t.venueSub}</div>
+        `;
+        dayTabsEl.innerHTML = '';
+        filterEl.innerHTML = '';
+      }
+
+      renderBodyOnly();
+    }
+
+    // --- PWA Install & Service Worker ---
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    let installDismissed = false;
+
+    function updateInstallBanner() {
+      const banner = document.getElementById('installBanner');
+      const msg = document.getElementById('installMsg');
+      const btn = document.getElementById('installActionBtn');
+      if (isStandalone || installDismissed) {
+        banner.classList.remove('show');
+        return;
+      }
+      if (deferredPrompt) {
+        msg.textContent = T[lang].androidInstall;
+        btn.textContent = T[lang].installBtn;
+        btn.style.display = 'inline-block';
+        banner.classList.add('show');
+      } else if (isIOS) {
+        msg.textContent = T[lang].iosInstall;
+        btn.style.display = 'none';
+        banner.classList.add('show');
+      }
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      updateInstallBanner();
+    });
+
+    function triggerInstall() {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.finally(() => {
+        deferredPrompt = null;
+        updateInstallBanner();
+      });
+    }
+
+    function dismissInstall() {
+      installDismissed = true;
+      updateInstallBanner();
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+
+    render();
+    updateInstallBanner();
+  </script>
+</body>
+</html>
