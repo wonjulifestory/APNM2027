@@ -273,80 +273,70 @@
       padding: 14px 14px calc(86px + env(safe-area-inset-bottom));
     }
 
-    /* HOME SCREEN (Hero + 3 Big Icon Tiles) */
+    /* HOME SCREEN — Minimal & Clean (No Hotel Photo, Fits One Screen) */
+    .home-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding-top: 8px;
+    }
     .home-hero {
-      background: #FFFFFF;
+      background: linear-gradient(135deg, #1D2088 0%, #008CD6 100%);
+      color: #FFFFFF;
       border-radius: 22px;
-      border: 1px solid var(--apnm-border);
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(29, 32, 136, 0.07);
-    }
-    .home-hero-top {
-      padding: 20px 18px 10px;
+      padding: 26px 20px 24px;
       text-align: center;
+      box-shadow: 0 8px 24px rgba(29, 32, 136, 0.14);
     }
-    .home-hero-logo {
-      height: 36px;
-      width: auto;
-      margin: 0 auto;
-      display: block;
-    }
-    .home-hero-sub {
-      font-size: 11.5px;
-      color: #546E7A;
-      margin-top: 8px;
-      line-height: 1.4;
-    }
-    .home-hero-theme {
-      font-size: 14.5px;
-      font-weight: 800;
-      color: var(--apnm-charcoal);
-      margin-top: 8px;
-      line-height: 1.35;
-    }
-    .home-hero-meta {
-      margin-top: 8px;
+    .home-hero-kicker {
       display: inline-block;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--apnm-bronze);
-      background: #F8F4EF;
-      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 4px 11px;
       border-radius: 999px;
     }
-    .home-hero-banner {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin-top: 6px;
+    .home-hero-theme {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-top: 14px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+    }
+    .home-hero-meta {
+      margin-top: 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
     }
 
     /* 3 Main Icon Tiles on Home Screen */
     .home-menu-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 14px;
+      gap: 12px;
     }
     .home-tile {
       background: #FFFFFF;
       border: 1px solid var(--apnm-border);
       border-radius: 20px;
-      padding: 18px 8px 16px;
+      padding: 22px 8px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 10px;
       cursor: pointer;
       position: relative;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-      transition: transform 0.12s ease, border-color 0.15s ease;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+      transition: transform 0.12s ease;
     }
     .home-tile:active { transform: scale(0.96); }
     .home-tile-icon {
-      width: 54px;
-      height: 54px;
+      width: 56px;
+      height: 56px;
       border-radius: 16px;
       display: flex;
       align-items: center;
@@ -357,17 +347,11 @@
     .tile-info .home-tile-icon    { background: var(--pastel-indigo); color: var(--apnm-indigo); }
 
     .home-tile-label {
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--apnm-charcoal);
       text-align: center;
       letter-spacing: -0.02em;
-    }
-    .home-tile-sub {
-      font-size: 11px;
-      color: var(--apnm-slate);
-      margin-top: -5px;
-      text-align: center;
     }
     .home-tile-badge {
       position: absolute;
@@ -382,31 +366,6 @@
       min-width: 22px;
       text-align: center;
     }
-
-    .home-quick-card {
-      margin-top: 14px;
-      background: #FFFFFF;
-      border: 1px solid var(--apnm-border);
-      border-radius: 18px;
-      padding: 14px 16px;
-    }
-    .quick-days {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .quick-day-btn {
-      border: 1px solid var(--apnm-blue-border);
-      background: var(--apnm-blue-table);
-      border-radius: 12px;
-      padding: 9px 6px;
-      text-align: center;
-      cursor: pointer;
-    }
-    .quick-day-btn:active { background: var(--pastel-sky); }
-    .quick-day-top { font-size: 12.5px; font-weight: 800; color: var(--apnm-indigo); }
-    .quick-day-sub { font-size: 11px; color: var(--apnm-slate); margin-top: 2px; }
 
     /* Session Cards with Official Pastel Colors */
     .session-list {
@@ -1406,74 +1365,54 @@
       const t = T[lang];
       const main = document.getElementById('mainContent');
 
-      // HOME SCREEN
+      // HOME SCREEN — Minimal & Clean
       if (currentTab === 'home') {
         main.innerHTML = `
-          <section class="home-hero">
-            <div class="home-hero-top">
-              <img src="./assets/logo_apnm2027.png" alt="APNM 2027" class="home-hero-logo" />
-              <div class="home-hero-sub" style="white-space:pre-line;">${t.homeFullTitle}</div>
+          <div class="home-wrap">
+            <section class="home-hero">
+              <div class="home-hero-kicker">APNM 2027 · KSNM</div>
               <div class="home-hero-theme">From Rome V to Practice:<br/>New Concepts in DGBI</div>
               <div class="home-hero-meta">${t.homeMeta}</div>
-            </div>
-            <img src="./assets/venue_banner.png" alt="Paradise City Incheon" class="home-hero-banner" />
-          </section>
+            </section>
 
-          <!-- 3 Core Icon Tiles: Program, My Schedule, Info -->
-          <section class="home-menu-grid">
-            <button class="home-tile tile-program" onclick="switchTab('program')">
-              <div class="home-tile-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="3"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                  <line x1="8" y1="14" x2="16" y2="14"></line>
-                  <line x1="8" y1="18" x2="13" y2="18"></line>
-                </svg>
-              </div>
-              <div class="home-tile-label">${t.tileProgram}</div>
-              <div class="home-tile-sub">${t.tileProgramSub}</div>
-            </button>
+            <!-- 3 Core Icon Tiles: Program, My Schedule, Info -->
+            <section class="home-menu-grid">
+              <button class="home-tile tile-program" onclick="switchTab('program')">
+                <div class="home-tile-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="3"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                    <line x1="8" y1="14" x2="16" y2="14"></line>
+                    <line x1="8" y1="18" x2="13" y2="18"></line>
+                  </svg>
+                </div>
+                <div class="home-tile-label">${t.tileProgram}</div>
+              </button>
 
-            <button class="home-tile tile-my" onclick="switchTab('my')">
-              ${savedIds.size > 0 ? `<span class="home-tile-badge">${savedIds.size}</span>` : ''}
-              <div class="home-tile-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.5l2.92 5.92 6.53.95-4.72 4.6 1.11 6.5L12 17.4l-5.84 3.07 1.11-6.5-4.72-4.6 6.53-.95L12 2.5z"/>
-                </svg>
-              </div>
-              <div class="home-tile-label">${t.tileMy}</div>
-              <div class="home-tile-sub">${t.tileMySub}</div>
-            </button>
+              <button class="home-tile tile-my" onclick="switchTab('my')">
+                ${savedIds.size > 0 ? `<span class="home-tile-badge">${savedIds.size}</span>` : ''}
+                <div class="home-tile-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.5l2.92 5.92 6.53.95-4.72 4.6 1.11 6.5L12 17.4l-5.84 3.07 1.11-6.5-4.72-4.6 6.53-.95L12 2.5z"/>
+                  </svg>
+                </div>
+                <div class="home-tile-label">${t.tileMy}</div>
+              </button>
 
-            <button class="home-tile tile-info" onclick="switchTab('venue')">
-              <div class="home-tile-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="16" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
-              </div>
-              <div class="home-tile-label">${t.tileInfo}</div>
-              <div class="home-tile-sub">${t.tileInfoSub}</div>
-            </button>
-          </section>
-
-          <!-- Quick Day Jump Card -->
-          <section class="home-quick-card">
-            <div class="section-heading" style="margin-bottom:0;">
-              <span>🗓 ${t.quickDayHeading}</span>
-            </div>
-            <div class="quick-days">
-              ${[1, 2, 3].map((d) => `
-                <button class="quick-day-btn" onclick="openDayFromHome(${d})">
-                  <div class="quick-day-top">${t.days[d].short}</div>
-                  <div class="quick-day-sub">${t.days[d].date}</div>
-                </button>
-              `).join('')}
-            </div>
-          </section>
+              <button class="home-tile tile-info" onclick="switchTab('venue')">
+                <div class="home-tile-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                </div>
+                <div class="home-tile-label">${t.tileInfo}</div>
+              </button>
+            </section>
+          </div>
         `;
         return;
       }
@@ -1585,7 +1524,6 @@
       // INFO / VENUE TAB
       main.innerHTML = `
         <section class="venue-card">
-          <img src="./assets/venue_banner.png" alt="Paradise City Incheon" class="venue-hero-img" />
           <div class="venue-body">
             <div class="venue-kicker">${t.venueKicker}</div>
             <div class="venue-name">${t.venueName}</div>

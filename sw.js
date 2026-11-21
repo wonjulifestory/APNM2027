@@ -1,4 +1,4 @@
-const CACHE_NAME = 'apnm2027-v4';
+const CACHE_NAME = 'apnm2027-v5';
 const ASSETS = [
   './',
   './index.html',
@@ -7,8 +7,7 @@ const ASSETS = [
   './assets/icon-512.png',
   './assets/apple-touch-icon.png',
   './assets/favicon.png',
-  './assets/logo_apnm2027.png',
-  './assets/venue_banner.png'
+  './assets/logo_apnm2027.png'
 ];
 
 self.addEventListener('install', (event) => {
