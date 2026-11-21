@@ -951,6 +951,18 @@
       font-weight: 800;
       cursor: pointer;
     }
+    .home-visual-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+    }
+    .home-visual-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -1743,11 +1755,7 @@
       if (currentTab === 'home') {
         main.innerHTML = `
           <div class="home-wrap">
-            <section class="home-hero">
-              <div class="home-hero-kicker">APNM 2027 · KSNM</div>
-              <div class="home-hero-theme">From Rome V to Practice:<br/>New Concepts in DGBI</div>
-              <div class="home-hero-meta">${t.homeMeta}</div>
-            </section>
+            <section class="home-visual-card"><img src="./assets/home_visual.png" alt="APNM 2027 Official Visual" class="home-visual-img" /></section>
 
             <section class="home-menu-grid">
               <button class="home-tile tile-program" onclick="switchTab('program')">
@@ -2111,6 +2119,7 @@
   </script>
 </body>
 </html>
+
 
 
 
