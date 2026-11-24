@@ -1,4 +1,4 @@
-const CACHE_NAME = 'apnm2027-v15';
+const CACHE_NAME = 'apnm2027-v16';
 const ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,7 @@ const ASSETS = [
   './assets/favicon.png',
   './assets/logo_apnm2027.png',
   './assets/home_visual.png',
+  './assets/apnm2027_poster.jpg',
   './assets/venue_banner.png',
   './assets/speakers/Nicholas_J._Talley.png',
   './assets/speakers/Ronnie_Fass.jpg',

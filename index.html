@@ -913,6 +913,69 @@
       flex-direction: column;
       gap: 6px;
     }
+    .card-speakers {
+      margin-top: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #1D2088;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .lecture-section {
+      margin-top: 14px;
+    }
+    .lecture-sec-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--apnm-indigo);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lecture-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lecture-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-left: 3.5px solid var(--apnm-blue);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .lecture-time {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--apnm-indigo);
+      background: var(--apnm-blue-soft);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 4px;
+    }
+    .lecture-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.38;
+    }
+    .lecture-speaker {
+      margin-top: 4px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1D2088;
+      line-height: 1.38;
+    }
+    .lecture-aff {
+      font-weight: 500;
+      color: #546E7A;
+    }
     .sheet-cta {
       width: 100%;
       margin-top: 16px;
@@ -1016,64 +1079,26 @@
       overflow-x: hidden;
     }
 
-    /* Full-Bleed Visual Hero + Integrated 2x2 Glass Tiles */
+    /* Full-Bleed Official Poster Hero + Integrated 2x2 Glass Tile Dock */
     .ipbm-hero {
       position: relative;
-      background-color: #0C153A;
-      background-image:
-        linear-gradient(180deg, rgba(11, 20, 62, 0.94) 0%, rgba(20, 34, 105, 0.78) 46%, rgba(12, 21, 58, 0.88) 100%),
-        url('./assets/venue_banner.png');
-      background-position: center bottom;
-      background-size: cover;
-      background-repeat: no-repeat;
+      background: #09122E;
       color: #FFFFFF;
-      padding: 20px 14px 20px;
+      padding: 0;
     }
-    .ipbm-hero-copy {
-      text-align: center;
-      margin-bottom: 16px;
+    .ipbm-poster-wrap {
+      position: relative;
+      background: #FFFFFF;
+      line-height: 0;
     }
-    .ipbm-theme-pill {
-      display: inline-block;
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      color: #E0F2FE;
-      background: rgba(56, 189, 248, 0.18);
-      border: 1px solid rgba(56, 189, 248, 0.36);
-      padding: 4px 11px;
-      border-radius: 999px;
-      max-width: 100%;
+    .ipbm-poster-img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
-    .ipbm-hero-title {
-      margin: 10px 0 4px;
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      color: #FFFFFF;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
-    }
-    .ipbm-hero-title span {
-      color: #38BDF8;
-    }
-    .ipbm-hero-sub {
-      font-size: 12px;
-      line-height: 1.45;
-      color: rgba(241, 245, 249, 0.92);
-      margin: 0 auto;
-      max-width: 340px;
-    }
-    .ipbm-hero-meta {
-      margin-top: 9px;
-      display: inline-block;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #F8FAFC;
-      background: rgba(15, 23, 42, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 5px 12px;
-      border-radius: 999px;
+    .ipbm-tile-dock {
+      background: linear-gradient(180deg, #09122E 0%, #111F54 55%, #16286B 100%);
+      padding: 14px 14px 18px;
     }
 
     /* 2x2 Translucent Glass Tiles */
@@ -1873,7 +1898,7 @@
       }
     };
 
-    // --- Official APNM 2027 Program Data (Matched to apnm.kr colors) ---
+    // --- Official APNM 2027 Program Data (Matched to apnm.kr/sub02_02.php & sub02_03.php) ---
     const SESSIONS = [
       // DAY 1 — April 1 (Thu)
       {
@@ -1881,58 +1906,89 @@
         category: 'Registration',
         title: 'On-site Registration',
         subtitle: 'Badge pick-up and congress kit distribution',
-        room: 'Emerald Foyer (1F)', roomKey: 'EMERALD', ai: false,
-        chairs: '', talks: ['Registration desk opens at 13:00']
+        room: 'Emerald Foyer (1F)', roomKey: 'EMERALD', ai: false, sessionLang: '',
+        chairs: '', aliases: '등록 데스크',
+        lectures: [
+          { time: '13:00–14:00', title: 'Badge pick-up & congress kit distribution', speaker: '', aff: '' }
+        ]
       },
       {
         id: 'd1-yi', day: 1, start: '14:00', end: '15:40', tone: 'green',
         category: 'Young Investigator',
         title: "Asian Young Investigator's Session",
         subtitle: "Asia's rising stars: Advances in neurogastroenterology research",
-        room: 'Emerald A+B (1F)', roomKey: 'EMERALD', ai: false,
-        chairs: 'ANMA & KSNM Organizing Committee',
-        talks: ['Selected oral presentations by rising neurogastroenterology researchers across Asia']
+        room: 'Emerald A+B (1F)', roomKey: 'EMERALD', ai: false, sessionLang: 'English',
+        chairs: 'Jung-Hwan Oh (The Catholic Univ. of Korea, Korea), Ping-Huei Tseng (National Taiwan Univ. Hospital, Taiwan)',
+        aliases: '오정환 핑후이청',
+        lectures: [
+          { time: '14:00–15:40', title: 'Selected Oral Presentations (abstract-based; presenters to be announced after Feb 17, 2027)', speaker: 'TBD', aff: '' }
+        ]
       },
       {
         id: 'd1-jnm', day: 1, start: '16:00', end: '17:30', tone: 'indigo',
         category: 'ANMA–JNM Joint',
         title: 'JNM Lectureship',
-        subtitle: 'Journal of Neurogastroenterology and Motility Joint Session',
-        room: 'Emerald A+B (1F)', roomKey: 'EMERALD', ai: false,
-        chairs: 'JNM Editorial Board',
-        talks: ['Keynote lectures & milestone highlights from JNM']
+        subtitle: 'ANMA–JNM joint session',
+        room: 'Emerald A+B (1F)', roomKey: 'EMERALD', ai: false, sessionLang: 'English',
+        chairs: 'Xiaohua Hou (Huazhong Univ. of Science & Technology, China), Ronnie Fass (Case Western Reserve Univ., USA)',
+        aliases: '김용성 김현진 로니 파스 샤오화 허우 잉리안 샤오 케윈 시아',
+        lectures: [
+          { time: '16:00–16:20', title: 'Building consensus across Asia: The ANMA guideline journey', speaker: 'Yinglian Xiao', aff: 'Sun Yat-sen University, China' },
+          { time: '16:20–16:40', title: 'Rome V in Asia: Opportunities and challenges', speaker: 'Kewin Siah', aff: 'National University of Singapore, Singapore' },
+          { time: '16:40–17:00', title: 'Diet and IBS in Asia: Beyond the low-FODMAP diet', speaker: 'Yong Sung Kim', aff: 'Wonkwang University, Korea' },
+          { time: '17:00–17:20', title: 'From Asian research to global impact: Lessons from JNM', speaker: 'Hyun Jin Kim', aff: 'Gyeongsang National University, Korea' },
+          { time: '17:20–17:30', title: 'Discussion', speaker: 'All Speakers', aff: 'Yinglian Xiao, Kewin Siah, Yong Sung Kim, Hyun Jin Kim' }
+        ]
       },
       {
         id: 'd1-welcome', day: 1, start: '18:10', end: '20:00', tone: 'pink',
         category: 'Social Event',
         title: 'Welcome Reception',
         subtitle: 'Opening networking reception for all registered participants',
-        room: 'Emerald (1F)', roomKey: 'EMERALD', ai: false,
-        chairs: '', talks: ['Welcome address & international networking dinner']
+        room: 'Emerald (1F)', roomKey: 'EMERALD', ai: false, sessionLang: '',
+        chairs: '', aliases: '환영 리셉션',
+        lectures: [
+          { time: '18:10–20:00', title: 'Welcome address & international networking reception', speaker: '', aff: '' }
+        ]
       },
 
       // DAY 2 — April 2 (Fri)
       {
-        id: 'd2-open', day: 2, start: '09:00', end: '10:20', tone: 'green',
-        category: 'Opening & Plenary',
-        title: 'Opening Ceremony & KSNM Plenary / Oral Presentations',
-        subtitle: 'Opening Ceremony (09:00–09:40) & KSNM Plenary Session (09:40–10:20)',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'KSNM President & Program Committee',
-        talks: ['Opening Ceremony & Presidential Address (09:00–09:40)', 'KSNM Plenary Session & Oral Presentations (09:40–10:20)']
+        id: 'd2-ksnm1', day: 2, start: '09:00', end: '09:40', tone: 'green',
+        category: 'KSNM Session 1',
+        title: 'KSNM Session 1: KSNM Oral Presentation',
+        subtitle: 'KSNM oral presentation',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'Korean',
+        chairs: 'Joong Goo Kwon (Daegu Catholic Univ., Korea), Kangnyeong Lee (Hanyang Univ., Korea)',
+        aliases: '권중구 이강녕 구연',
+        lectures: [
+          { time: '09:00–09:40', title: 'KSNM Oral Presentations (abstract-based; presenters to be announced)', speaker: 'TBD', aff: '' }
+        ]
+      },
+      {
+        id: 'd2-ksnm2', day: 2, start: '09:40', end: '10:20', tone: 'green',
+        category: 'KSNM Session 2',
+        title: 'KSNM Session 2: KSNM Plenary Session',
+        subtitle: 'KSNM plenary session',
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Jung Ho Park (Sungkyunkwan Univ., Korea), Do Hoon Kim (Univ. of Ulsan, Korea)',
+        aliases: '박정호 김도훈 플레너리',
+        lectures: [
+          { time: '09:40–10:20', title: 'KSNM Plenary Presentations (abstract-based; presenters to be announced)', speaker: 'TBD', aff: '' }
+        ]
       },
       {
         id: 'd2-s1', day: 2, start: '10:45', end: '12:00', tone: 'sky',
         category: 'Session 1',
         title: 'GI motility testing in the era of precision medicine',
         subtitle: 'From physiology to clinical decision-making',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'Kwang Jae Lee (이광재, Ajou Univ., Korea), Uday Ghoshal (Apollo Hospitals, India)',
-        aliases: '이광재 로니 파스 우데이 고샬',
-        talks: [
-          'Decoding esophageal symptoms: A practical roadmap to diagnosis — Ronnie Fass (Case Western Reserve Univ., USA)',
-          'Navigating gastroduodenal symptoms: From clinical clues to mechanisms',
-          'Making sense of colorectal symptoms: An evidence-based approach — Uday Ghoshal (India)'
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Kwang Jae Lee (Ajou Univ., Korea), Uday C. Ghoshal (Apollo Multispeciality Hospitals, India)',
+        aliases: '이광재 박무인 로니 파스 우데이 고샬',
+        lectures: [
+          { time: '10:45–11:10', title: 'Decoding esophageal symptoms: A practical roadmap to diagnosis', speaker: 'Ronnie Fass', aff: 'Case Western Reserve University, USA' },
+          { time: '11:10–11:35', title: 'Navigating gastroduodenal symptoms: From clinical clues to mechanisms', speaker: 'Moo In Park', aff: 'Kosin University, Korea' },
+          { time: '11:35–12:00', title: 'Making sense of colorectal symptoms: An evidence-based approach', speaker: 'Uday C. Ghoshal', aff: 'Apollo Multispeciality Hospitals, India' }
         ]
       },
       {
@@ -1940,21 +1996,25 @@
         category: 'Luncheon',
         title: 'Luncheon Symposium 1',
         subtitle: 'Sponsored lunch & clinical update symposium',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: '', talks: ['Sponsored Luncheon Symposium (details updated on apnm.kr)']
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Sung-Ae Jung (Ewha Womans Univ., Korea), Hyun-Soo Kim (Yonsei Univ. Wonju, Korea)',
+        aliases: '정성애 김현수 런천',
+        lectures: [
+          { time: '12:00–13:00', title: 'Sponsored Luncheon Symposium 1 (Topic & speaker to be updated on apnm.kr)', speaker: 'TBD', aff: '' }
+        ]
       },
       {
         id: 'd2-s2', day: 2, start: '13:00', end: '14:15', tone: 'sky',
         category: 'Session 2',
         title: 'Rome V unveiled: Redefining DGBI',
         subtitle: 'Redefining disorders of gut–brain interaction',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'Sang Kil Lee (이상길, Yonsei Univ., Korea), Nicholas Talley (Univ. of Newcastle, Australia)',
-        aliases: '이상길 니콜라스 탈리 마그누스 심렌 프라카시 기야왈리',
-        talks: [
-          'Functional esophageal disorders in the Rome V era — Prakash Gyawali (Washington Univ., USA)',
-          "Revisiting gastroduodenal disorders: What's new in Rome V? — Nicholas J. Talley (Australia)",
-          'Functional bowel disorders: Evolution from Rome IV to Rome V — Magnus Simrén (Univ. of Gothenburg, Sweden)'
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Sang Kil Lee (Yonsei Univ., Korea), Nicholas J. Talley (The Univ. of Newcastle, Australia)',
+        aliases: '이상길 니콜라스 탈리 마그누스 심렌 프라카시 기야왈리 로마',
+        lectures: [
+          { time: '13:00–13:25', title: 'Functional esophageal disorders in the Rome V era', speaker: 'Prakash Gyawali', aff: 'Washington University School of Medicine, St. Louis, USA' },
+          { time: '13:25–13:50', title: "Revisiting gastroduodenal disorders: What's new in Rome V?", speaker: 'Nicholas J. Talley', aff: 'The University of Newcastle, Australia' },
+          { time: '13:50–14:15', title: 'Functional bowel disorders: Evolution from Rome IV to Rome V', speaker: 'Magnus Simrén', aff: 'University of Gothenburg, Sweden' }
         ]
       },
       {
@@ -1962,13 +2022,13 @@
         category: 'Session 3',
         title: 'Rethinking IBS: From complexity to clarity',
         subtitle: 'Overlap disorders, microbiome, food, and refractory IBS',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'Magnus Simrén (Univ. of Gothenburg, Sweden)',
-        aliases: '마그누스 심렌 에도아르도 사바리노 키후앗 추아',
-        talks: [
-          'IBS and its overlap disorders: Why are symptoms so complex? — Edoardo Vincenzo Savarino (Univ. of Padua, Italy)',
-          'What drives IBS symptoms? Microbiome, food, and the brain-gut axis — Magnus Simrén (Sweden)',
-          'Management of refractory IBS: Current and emerging therapies — Kee Huat Chuah (Univ. of Malaya, Malaysia)'
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Chang Hwan Choi (Chung-Ang Univ., Korea), Magnus Simrén (Univ. of Gothenburg, Sweden)',
+        aliases: '최창환 마그누스 심렌 에도아르도 사바리노 키후앗 추아 과민성장증후군',
+        lectures: [
+          { time: '14:15–14:40', title: 'IBS and its overlap disorders: Why are symptoms so complex?', speaker: 'Edoardo Vincenzo Savarino', aff: 'University of Padua, Italy' },
+          { time: '14:40–15:05', title: 'What drives IBS symptoms? Microbiome, food, and the brain-gut axis', speaker: 'Magnus Simrén', aff: 'University of Gothenburg, Sweden' },
+          { time: '15:05–15:30', title: 'Management of refractory IBS: Current and emerging therapies', speaker: 'Kee Huat Chuah', aff: 'University of Malaya, Malaysia' }
         ]
       },
       {
@@ -1976,20 +2036,24 @@
         category: 'Poster & Break',
         title: 'Coffee Break & Poster Session',
         subtitle: 'Poster viewing & discussion with presenters',
-        room: 'Grand Ballroom Foyer (1F)', roomKey: 'GRAND', ai: false,
-        chairs: '', talks: ['APNM 2027 Poster Exhibition & Coffee Break']
+        room: 'Grand Ballroom Foyer (1F)', roomKey: 'GRAND', ai: false, sessionLang: '',
+        chairs: '', aliases: '포스터 휴식',
+        lectures: [
+          { time: '15:30–16:00', title: 'APNM 2027 Poster Exhibition & Coffee Break', speaker: '', aff: '' }
+        ]
       },
       {
         id: 'd2-s4', day: 2, start: '16:00', end: '17:15', tone: 'sky',
         category: 'Session 4',
         title: 'Constipation revisited: From phenotypes to personalized care',
         subtitle: 'Phenotyping chronic constipation & tailored therapy',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'APNM Faculty',
-        aliases: '마나베 타니사 변비',
-        talks: [
-          'Slow Transit, Defecatory Disorders, or Both? Phenotyping Chronic Constipation — Noriaki Manabe (Kawasaki Medical School, Japan)',
-          'Which Tests Matter? Practical Evaluation of Colorectal Motility and Evacuation — Tanisa Patcharatrakul (Chulalongkorn University, Thailand)'
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Suck Chei Choi (Wonkwang Univ., Korea), Noriaki Manabe (Kawasaki Medical School, Japan)',
+        aliases: '최석채 정기욱 마나베 타니사 변비',
+        lectures: [
+          { time: '16:00–16:25', title: 'Slow Transit, Defecatory Disorders, or Both? Phenotyping Chronic Constipation', speaker: 'Noriaki Manabe', aff: 'Kawasaki Medical School, Japan' },
+          { time: '16:25–16:50', title: 'Which Tests Matter? Practical Evaluation of Colorectal Motility and Evacuation', speaker: 'Tanisa Patcharatrakul', aff: 'Chulalongkorn University, Thailand' },
+          { time: '16:50–17:15', title: 'Managing Refractory Constipation: From Biofeedback to Surgery', speaker: 'Kee Wook Jung', aff: 'University of Ulsan, Korea' }
         ]
       },
       {
@@ -1997,40 +2061,58 @@
         category: 'Invited Only',
         title: 'Gala Dinner',
         subtitle: 'By invitation only — Emerald Ballroom',
-        room: 'Emerald (1F)', roomKey: 'EMERALD', ai: false,
-        chairs: '', talks: ['APNM 2027 Gala Dinner (Invited Guests Only)']
+        room: 'Emerald (1F)', roomKey: 'EMERALD', ai: false, sessionLang: '',
+        chairs: '', aliases: '갈라디너 만찬',
+        lectures: [
+          { time: '18:10–20:00', title: 'APNM 2027 Gala Dinner (By invitation only)', speaker: '', aff: '' }
+        ]
       },
 
       // DAY 3 — April 3 (Sat)
       {
         id: 'd3-s5', day: 3, start: '09:00', end: '10:15', tone: 'sky',
         category: 'Session 5',
-        title: 'GERD reimagined: From Lyon 2.0 to Personalized care',
+        title: 'GERD reimagined: From Lyon 2.0 to personalized care',
         subtitle: 'Modern diagnostic criteria & tailored GERD management',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'APNM Faculty',
-        talks: ['Applying Lyon 2.0 consensus in daily clinical practice', 'Personalized therapy for refractory GERD phenotypes']
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Hye-Kyung Jung (Ewha Womans Univ., Korea), Prakash Gyawali (Washington Univ., St. Louis, USA)',
+        aliases: '정혜경 윤영훈 기야왈리 사바리노 위식도역류질환',
+        lectures: [
+          { time: '09:00–09:25', title: 'Beyond Lyon 2.0: What is next in GERD diagnosis?', speaker: 'Prakash Gyawali', aff: 'Washington University School of Medicine, St. Louis, USA' },
+          { time: '09:25–09:50', title: 'Closing the gap in inconclusive GERD: The role of MNBI and the Milan score', speaker: 'Edoardo Vincenzo Savarino', aff: 'University of Padua, Italy' },
+          { time: '09:50–10:15', title: 'Beyond PPI: Endoscopic treatment of GERD', speaker: 'Young Hoon Youn', aff: 'Yonsei University, Korea' }
+        ]
       },
       {
         id: 'd3-nursing', day: 3, start: '09:00', end: '11:30', tone: 'orange',
         category: 'Nursing Session',
-        title: 'Nursing & Motility Technician Session',
+        title: 'Nursing Session: Practical GI Motility Testing',
         subtitle: 'Practical clinical guide for motility nurses & technicians',
-        room: 'Emerald A+B (1F)', roomKey: 'EMERALD', ai: false,
-        chairs: 'KSNM Nursing Committee',
-        talks: ['High-resolution manometry & pH-impedance best practices', 'Patient care & counseling in DGBI clinics']
+        room: 'Emerald (1F)', roomKey: 'EMERALD', ai: false, sessionLang: 'Korean',
+        chairs: 'Yun Jung (Soonchunhyang Univ. Seoul Hospital, Korea)',
+        aliases: '주희경 정윤 윤석중 김은숙 간호 검사',
+        lectures: [
+          { time: '09:00–09:25', title: 'High-resolution esophageal manometry: Practical techniques and troubleshooting', speaker: 'Hee Kyoung Joo', aff: 'Kosin University Gospel Hospital, Korea' },
+          { time: '09:25–09:50', title: 'Ambulatory reflux monitoring: Patient preparation, catheter placement, and troubleshooting', speaker: 'Yun Jung', aff: 'Soonchunhyang University Seoul Hospital, Korea' },
+          { time: '09:50–10:15', title: 'Anorectal manometry and balloon expulsion testing: Practical tips for accurate assessment', speaker: 'TBD', aff: '' },
+          { time: '10:15–10:30', title: 'Coffee Break', speaker: '', aff: '' },
+          { time: '10:30–10:55', title: 'Hydrogen and methane breath testing: From patient preparation to reliable results', speaker: 'Seok-Jung Yun', aff: 'Konyang University Hospital, Korea' },
+          { time: '10:55–11:20', title: 'Biofeedback therapy for defecatory disorders: Practical techniques and patient education', speaker: 'Eun Sook Kim', aff: 'Severance Hospital, Korea' },
+          { time: '11:20–11:30', title: 'Panel discussion and Q&A', speaker: 'All Speakers', aff: '' }
+        ]
       },
       {
         id: 'd3-s6', day: 3, start: '10:30', end: '11:45', tone: 'sky',
         category: 'Session 6',
         title: 'Functional dyspepsia and gastroduodenal disorders',
         subtitle: 'From mechanisms to precision care',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'APNM Faculty',
-        aliases: '사바리노 기능성 소화불량 위마비',
-        talks: [
-          'Gastroparesis and beyond: Toward precision gastroduodenal disorders — Edoardo Vincenzo Savarino (Univ. of Padua, Italy)',
-          'Pathophysiology & precision care strategies for functional dyspepsia'
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'In-Kyung Sung (Konkuk Univ., Korea), Ari Fahrial Syam (Universitas Indonesia, Indonesia)',
+        aliases: '성인경 탈리 사바리노 마크 웡 기능성 소화불량 위마비',
+        lectures: [
+          { time: '10:30–10:55', title: 'Functional dyspepsia in 2027: Beyond traditional concepts', speaker: 'Nicholas J. Talley', aff: 'The University of Newcastle, Australia' },
+          { time: '10:55–11:20', title: 'Gastroparesis and beyond: Toward precision gastroduodenal disorders', speaker: 'Edoardo Vincenzo Savarino', aff: 'University of Padua, Italy' },
+          { time: '11:20–11:45', title: 'Refractory upper GI symptoms: From mechanisms to targeted therapies', speaker: 'Marc Wong', aff: 'The University of Hong Kong, Hong Kong' }
         ]
       },
       {
@@ -2038,35 +2120,62 @@
         category: 'AGM & Luncheon',
         title: 'Annual General Meeting & Luncheon Symposium 2',
         subtitle: 'KSNM Annual General Meeting & Sponsored Luncheon',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: '', talks: ['KSNM Annual General Meeting', 'Luncheon Symposium 2']
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Hyun Soo Kim (Chonnam National Univ., Korea), Byung-Wook Kim (The Catholic Univ. of Korea, Korea)',
+        aliases: '김현수 김병욱 총회 런천',
+        lectures: [
+          { time: '11:45–12:10', title: 'KSNM Annual General Meeting', speaker: 'KSNM', aff: '' },
+          { time: '12:10–13:00', title: 'Sponsored Luncheon Symposium 2 (Topic & speaker to be updated on apnm.kr)', speaker: 'TBD', aff: '' }
+        ]
       },
       {
         id: 'd3-pcab', day: 3, start: '13:00', end: '14:30', tone: 'sky',
         category: 'Special Session',
         title: 'P-CAB Across Asia',
         subtitle: 'Real-world experience and future perspectives',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'Asian Experts Panel',
-        talks: ['Real-world Asian clinical experience with P-CABs', 'Future perspectives in acid-related & functional GI disorders']
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'English',
+        chairs: 'Moo In Park (Kosin Univ., Korea), Tadayuki Oshima (Nagoya City Univ. West Medical Center, Japan)',
+        aliases: '박무인 이상표 오시마 타오 바이 고샬 추아 항 다오 비엣 핑후이청 마크 웡',
+        lectures: [
+          { time: '13:00–13:10', title: 'Korean experience', speaker: 'Sang Pyo Lee', aff: 'Hanyang University, Korea' },
+          { time: '13:10–13:20', title: 'Japan experience', speaker: 'Tadayuki Oshima', aff: 'Nagoya City University West Medical Center, Japan' },
+          { time: '13:20–13:30', title: 'China experience', speaker: 'Tao Bai', aff: 'Wuhan Univ. of Science & Technology, China' },
+          { time: '13:30–13:40', title: 'Indian experience', speaker: 'Uday C. Ghoshal', aff: 'Apollo Multispeciality Hospitals, India' },
+          { time: '13:40–13:50', title: 'Malaysia experience', speaker: 'Kee Huat Chuah', aff: 'University of Malaya, Malaysia' },
+          { time: '13:50–14:00', title: 'Vietnam experience', speaker: 'Hang Dao Viet', aff: 'Hanoi Medical University, Vietnam' },
+          { time: '14:00–14:10', title: 'Taiwan experience', speaker: 'Ping-Huei Tseng', aff: 'National Taiwan University, Taiwan' },
+          { time: '14:10–14:20', title: 'Hong Kong experience', speaker: 'Marc Wong', aff: 'The University of Hong Kong, Hong Kong' },
+          { time: '14:20–14:30', title: 'Discussion', speaker: 'All Speakers', aff: '' }
+        ]
       },
       {
         id: 'd3-pg1', day: 3, start: '14:30', end: '15:50', tone: 'purple',
         category: 'PG Course 1',
         title: 'KSNM Guideline Update 2027',
         subtitle: 'Translating evidence into practice',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'KSNM Guideline Committee',
-        talks: ['Key updates from the 2027 KSNM Clinical Practice Guidelines']
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'Korean',
+        chairs: 'Jeong Hwan Kim (Konkuk Univ., Korea), Yu Kyung Cho (The Catholic Univ. of Korea, Korea)',
+        aliases: '김정환 조유경 서승인 김승한 최용훈 가이드라인',
+        lectures: [
+          { time: '14:30–14:50', title: 'GERD', speaker: 'Seung In Seo', aff: 'Hallym University College of Medicine, Korea' },
+          { time: '14:50–15:10', title: 'FD (Functional Dyspepsia)', speaker: 'Seung Han Kim', aff: 'Korea University, Korea' },
+          { time: '15:10–15:30', title: 'IBS (Irritable Bowel Syndrome)', speaker: 'Yonghoon Choi', aff: 'Seoul National University, Korea' },
+          { time: '15:30–15:50', title: 'Constipation', speaker: 'TBD', aff: '' }
+        ]
       },
       {
         id: 'd3-pg2', day: 3, start: '16:00', end: '17:00', tone: 'purple',
         category: 'PG Course 2',
         title: 'The difficult DGBI clinic',
         subtitle: 'Expert strategies for real-world practice',
-        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true,
-        chairs: 'KSNM & International Panel',
-        talks: ['Real-world case discussions and expert strategies for challenging DGBI patients']
+        room: 'Grand Ballroom B+C (1F)', roomKey: 'GRAND', ai: true, sessionLang: 'Korean',
+        chairs: 'Heung Up Kim (Jeju National Univ., Korea), Jeong Eun Shin (Dankook Univ., Korea)',
+        aliases: '김흥업 신정은 신철민 김성은 이정원 연하곤란 구역 복부팽만',
+        lectures: [
+          { time: '16:00–16:20', title: 'Dysphagia', speaker: 'Cheol Min Shin', aff: 'Seoul National University, Korea' },
+          { time: '16:20–16:40', title: 'Refractory nausea and vomiting', speaker: 'Sung Eun Kim', aff: 'Kosin University, Korea' },
+          { time: '16:40–17:00', title: 'Abdominal bloating', speaker: 'Jung Won Lee', aff: 'Sungkyunkwan University, Korea' }
+        ]
       }
     ];
 
@@ -2353,11 +2462,25 @@
       render();
     }
 
+    function getNamedSpeakers(s) {
+      const seen = new Set();
+      (s.lectures || []).forEach((lk) => {
+        if (lk.speaker && lk.speaker !== 'TBD' && lk.speaker !== 'All Speakers' && lk.speaker !== 'KSNM') {
+          seen.add(lk.speaker);
+        }
+      });
+      return [...seen];
+    }
+
     function openDetail(id) {
       const s = SESSIONS.find((x) => x.id === id);
       if (!s) return;
       const t = T[lang];
+      const isKo = lang === 'ko';
       const isSaved = savedIds.has(s.id);
+      const lectures = s.lectures || [];
+      const langDisplay = [s.sessionLang || '', s.ai ? `<span class="ai-badge">${t.aiBadge}</span>` : ''].filter(Boolean).join(' · ');
+
       document.getElementById('detailContent').innerHTML = `
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
           <div class="badges">
@@ -2371,17 +2494,33 @@
         <table class="detail-table">
           <tr><th>${t.thTime}</th><td><b>${t.days[s.day].date}</b> · ${s.start} – ${s.end}</td></tr>
           <tr><th>${t.thRoom}</th><td>📍 ${s.room}</td></tr>
-          ${s.ai ? `<tr><th>${t.thLang}</th><td>English + ${t.aiBadge}</td></tr>` : ''}
+          ${langDisplay ? `<tr><th>${t.thLang}</th><td>${langDisplay}</td></tr>` : ''}
           ${s.chairs ? `<tr><th>${t.thChairs}</th><td>${s.chairs}</td></tr>` : ''}
-          <tr>
-            <th>${t.thTalks}</th>
-            <td>
-              <ul class="talk-list">
-                ${s.talks.map((tk) => `<li>${tk}</li>`).join('')}
-              </ul>
-            </td>
-          </tr>
         </table>
+        <div class="lecture-section">
+          <div class="lecture-sec-title">
+            <span>${isKo ? '🎤 세부 강연 및 강의자' : '🎤 Lectures & Speakers'} (${lectures.length})</span>
+          </div>
+          <div class="lecture-list">
+            ${lectures.map((lk) => {
+              let speakerHtml = '';
+              if (lk.speaker === 'TBD') {
+                speakerHtml = `<div class="lecture-speaker" style="color:#64748B;font-weight:600;">🎤 ${isKo ? '추후 공지 (TBD)' : 'To Be Determined (TBD)'}</div>`;
+              } else if (lk.speaker === 'All Speakers') {
+                speakerHtml = `<div class="lecture-speaker">👥 ${isKo ? '전체 연자 (All Speakers)' : 'All Speakers'}${lk.aff ? ` <span class="lecture-aff">(${lk.aff})</span>` : ''}</div>`;
+              } else if (lk.speaker) {
+                speakerHtml = `<div class="lecture-speaker">🎤 ${lk.speaker}${lk.aff ? ` <span class="lecture-aff">(${lk.aff})</span>` : ''}</div>`;
+              }
+              return `
+                <div class="lecture-card">
+                  ${lk.time ? `<div class="lecture-time">🕒 ${lk.time}</div>` : ''}
+                  <div class="lecture-title">${lk.title}</div>
+                  ${speakerHtml}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
         <button class="sheet-cta ${isSaved ? 'remove' : 'add'}" onclick="toggleSave('${s.id}'); openDetail('${s.id}');">
           ${isSaved ? t.removeFromMy : t.addToMy}
         </button>
@@ -2699,14 +2838,12 @@
         main.innerHTML = `
           <div class="ipbm-home">
             <section class="ipbm-hero">
-              <div class="ipbm-hero-copy">
-                <div class="ipbm-theme-pill">From Rome V to Practice: New Concepts in DGBI</div>
-                <h1 class="ipbm-hero-title">APNM <span>2027</span></h1>
-                <p class="ipbm-hero-sub">${t.heroSub.replace(/\n/g, '<br/>')}</p>
-                <div class="ipbm-hero-meta">${t.heroDateVenue}</div>
+              <div class="ipbm-poster-wrap">
+                <img src="./assets/apnm2027_poster.jpg" alt="APNM 2027 Poster" class="ipbm-poster-img" />
               </div>
 
-              <div class="ipbm-tile-grid">
+              <div class="ipbm-tile-dock">
+                <div class="ipbm-tile-grid">
                 <button class="ipbm-tile" onclick="switchTab('program')">
                   <div class="ipbm-tile-head">
                     <div class="ipbm-tile-kicker">${t.tileProgramK}</div>
@@ -2763,6 +2900,7 @@
                     </svg>
                   </div>
                 </button>
+              </div>
               </div>
             </section>
 
@@ -2887,7 +3025,8 @@
           if (!isSearching && s.day !== selectedDay) return false;
           if (roomFilter !== 'ALL' && s.roomKey !== roomFilter) return false;
           if (isSearching) {
-            const hay = (s.title + ' ' + s.subtitle + ' ' + s.category + ' ' + s.chairs + ' ' + (s.aliases || '') + ' ' + s.talks.join(' ')).toLowerCase();
+            const lecText = (s.lectures || []).map((lk) => `${lk.time} ${lk.title} ${lk.speaker} ${lk.aff}`).join(' ');
+            const hay = (s.title + ' ' + s.subtitle + ' ' + s.category + ' ' + s.chairs + ' ' + (s.aliases || '') + ' ' + lecText).toLowerCase();
             if (!hay.includes(q)) return false;
           }
           return true;
@@ -2908,10 +3047,11 @@
             ${list.map((s) => {
               const isSaved = savedIds.has(s.id);
               const isLive = liveIdSet.has(s.id);
-              const matchedTalks = isSearching
-                ? s.talks.filter((tk) => tk.toLowerCase().includes(q))
+              const matchedLectures = isSearching
+                ? (s.lectures || []).filter((lk) => (`${lk.time} ${lk.title} ${lk.speaker} ${lk.aff}`).toLowerCase().includes(q))
                 : [];
               const matchedChair = isSearching && s.chairs && s.chairs.toLowerCase().includes(q);
+              const namedSpeakers = getNamedSpeakers(s);
               return `
                 <article class="session-card tone-${s.tone} ${isSaved ? 'saved' : ''} ${isLive ? 'is-live' : ''}" onclick="openDetail('${s.id}')">
                   <div class="card-top">
@@ -2928,8 +3068,9 @@
                   </div>
                   <div class="card-title">${s.title}</div>
                   <div class="card-sub">${s.subtitle}</div>
+                  ${!isSearching && namedSpeakers.length ? `<div class="card-speakers">🎤 ${namedSpeakers.join(' · ')}</div>` : ''}
                   ${matchedChair ? `<div style="margin-top:6px;font-size:11.5px;color:#1D2088;background:rgba(255,255,255,0.85);padding:5px 8px;border-radius:8px;"><b>👤 ${t.thChairs}:</b> ${s.chairs}</div>` : ''}
-                  ${matchedTalks.length ? `<div style="margin-top:6px;font-size:11.5px;color:#1D2088;background:rgba(255,255,255,0.85);padding:5px 8px;border-radius:8px;">${matchedTalks.map((tk) => `<div>🎤 ${tk}</div>`).join('')}</div>` : ''}
+                  ${matchedLectures.length ? `<div style="margin-top:6px;font-size:11.5px;color:#1D2088;background:rgba(255,255,255,0.85);padding:6px 8px;border-radius:8px;display:flex;flex-direction:column;gap:4px;">${matchedLectures.map((lk) => `<div>🕒 <b>${lk.time}</b> · ${lk.title}${lk.speaker ? ` — <b>${lk.speaker}</b>` : ''}</div>`).join('')}</div>` : ''}
                   <div class="card-footer">
                     <span>📍 ${s.room}</span>
                     <span class="card-more">${t.details}</span>
