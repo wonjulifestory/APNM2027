@@ -1,4 +1,4 @@
-const CACHE_NAME = 'apnm2027-v18';
+const CACHE_NAME = 'apnm2027-v19';
 const ASSETS = [
   './',
   './index.html',

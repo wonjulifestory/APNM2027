@@ -1051,49 +1051,71 @@
       justify-content: space-between;
     }
 
-    /* === IPBM 2027 Skeleton Redesign Styles === */
-    .app-shell.is-home .main-content {
-      padding: 0 0 calc(84px + env(safe-area-inset-bottom));
+    /* === IPBM 2027 Skeleton One-Screen Zero-Scroll Home === */
+    .app-shell.is-home {
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
     }
-    .ipbm-home {
+    .app-shell.is-home .main-content {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0 0 calc(66px + env(safe-area-inset-bottom));
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
+    }
+    .ipbm-home {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #09122E;
     }
 
     /* Full-Bleed Official Poster Hero + Integrated 2x2 Glass Tile Dock */
     .ipbm-hero {
-      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
       background: #09122E;
       color: #FFFFFF;
       padding: 0;
     }
     .ipbm-poster-wrap {
-      position: relative;
+      flex: 1 1 0;
+      min-height: 0;
       background: #FFFFFF;
-      line-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
     .ipbm-poster-img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: contain;
       display: block;
     }
     .ipbm-tile-dock {
+      flex-shrink: 0;
       background: linear-gradient(180deg, #09122E 0%, #111F54 55%, #16286B 100%);
-      padding: 14px 14px 18px;
+      padding: 12px 12px 12px;
     }
 
-    /* 3-Column Translucent Glass Tiles */
+    /* 2x2 Translucent Glass Tiles (IPBM 2027 Skeleton) */
     .ipbm-tile-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
     }
     .ipbm-tile {
-      min-height: 92px;
+      min-height: 82px;
       border-radius: 15px;
-      padding: 11px 9px;
-      background: linear-gradient(145deg, rgba(54, 78, 162, 0.82), rgba(0, 140, 214, 0.58));
+      padding: 11px 12px;
+      background: linear-gradient(145deg, rgba(54, 78, 162, 0.84), rgba(0, 140, 214, 0.60));
       border: 1px solid rgba(255, 255, 255, 0.28);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -1104,25 +1126,25 @@
       text-align: left;
       position: relative;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(7, 13, 40, 0.32);
+      box-shadow: 0 6px 16px rgba(7, 13, 40, 0.30);
       transition: transform 0.12s ease;
     }
     .ipbm-tile:active { transform: scale(0.97); }
     .ipbm-tile-head {
-      padding-right: 4px;
+      padding-right: 18px;
     }
     .ipbm-tile-kicker {
-      font-size: 11.5px;
+      font-size: 12.5px;
       font-weight: 900;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
       line-height: 1.2;
       color: #FFFFFF;
     }
     .ipbm-tile-sub {
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 600;
       color: rgba(224, 242, 254, 0.92);
-      margin-top: 3px;
+      margin-top: 2px;
       line-height: 1.25;
     }
     .ipbm-tile-ico {
@@ -2249,12 +2271,24 @@
       return lang === 'ko' ? '종료' : 'Ended';
     }
 
+    function openLiveSheet() {
+      const isKo = lang === 'ko';
+      document.getElementById('detailContent').innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
+          <h2 style="font-size:16px;font-weight:800;color:#1D2088;margin:0;">📍 ${isKo ? '방별 실시간 현황' : 'Live Status by Room'}</h2>
+          <button onclick="closeDetail()" style="border:none;background:#F1F5F9;color:#475569;border-radius:999px;width:28px;height:28px;font-weight:700;cursor:pointer;">✕</button>
+        </div>
+        ${renderLiveWidget()}
+      `;
+      document.getElementById('detailBackdrop').classList.add('open');
+    }
+
     function renderBodyOnly() {
       const t = T[lang];
       const isKo = lang === 'ko';
       const main = document.getElementById('mainContent');
 
-      // HOME SCREEN — Streamlined Native App UI + IPBM 2027 Skeleton + Official Poster
+      // HOME SCREEN — One-Screen Zero-Scroll IPBM 2x2 Skeleton + Official Poster
       if (currentTab === 'home') {
         main.innerHTML = `
           <div class="ipbm-home">
@@ -2265,53 +2299,62 @@
 
               <div class="ipbm-tile-dock">
                 <div class="ipbm-tile-grid">
-                <button class="ipbm-tile" onclick="switchTab('program')">
-                  <div class="ipbm-tile-head">
-                    <div class="ipbm-tile-kicker">${t.tileProgramK}</div>
-                    <div class="ipbm-tile-sub">${t.tileProgramS}</div>
-                  </div>
-                  <div class="ipbm-tile-ico">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="4" width="18" height="18" rx="3"></rect>
-                      <line x1="16" y1="2" x2="16" y2="6"></line>
-                      <line x1="8" y1="2" x2="8" y2="6"></line>
-                      <line x1="3" y1="10" x2="21" y2="10"></line>
-                      <line x1="8" y1="14" x2="16" y2="14"></line>
-                    </svg>
-                  </div>
-                </button>
+                  <button class="ipbm-tile" onclick="switchTab('program')">
+                    <div class="ipbm-tile-head">
+                      <div class="ipbm-tile-kicker">${t.tileProgramK}</div>
+                      <div class="ipbm-tile-sub">${t.tileProgramS}</div>
+                    </div>
+                    <div class="ipbm-tile-ico">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="3"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <line x1="8" y1="14" x2="16" y2="14"></line>
+                      </svg>
+                    </div>
+                  </button>
 
-                <button class="ipbm-tile" onclick="switchTab('my')">
-                  ${savedIds.size > 0 ? `<span class="ipbm-tile-badge">${savedIds.size}</span>` : ''}
-                  <div class="ipbm-tile-head">
-                    <div class="ipbm-tile-kicker">${t.tileMyK}</div>
-                    <div class="ipbm-tile-sub">${t.tileMyS}</div>
-                  </div>
-                  <div class="ipbm-tile-ico">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                  </div>
-                </button>
+                  <button class="ipbm-tile" onclick="switchTab('my')">
+                    ${savedIds.size > 0 ? `<span class="ipbm-tile-badge">${savedIds.size}</span>` : ''}
+                    <div class="ipbm-tile-head">
+                      <div class="ipbm-tile-kicker">${t.tileMyK}</div>
+                      <div class="ipbm-tile-sub">${t.tileMyS}</div>
+                    </div>
+                    <div class="ipbm-tile-ico">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                    </div>
+                  </button>
 
-                <button class="ipbm-tile" onclick="switchTab('venue')">
-                  <div class="ipbm-tile-head">
-                    <div class="ipbm-tile-kicker">${t.tileInfoK}</div>
-                    <div class="ipbm-tile-sub">${t.tileInfoS}</div>
-                  </div>
-                  <div class="ipbm-tile-ico">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                  </div>
-                </button>
+                  <button class="ipbm-tile" onclick="openLiveSheet()">
+                    <div class="ipbm-tile-head">
+                      <div class="ipbm-tile-kicker">LIVE ROOMS</div>
+                      <div class="ipbm-tile-sub">${isKo ? '방별 실시간 현황' : 'Live by Room'}</div>
+                    </div>
+                    <div class="ipbm-tile-ico">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="2"></circle>
+                        <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path>
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button class="ipbm-tile" onclick="switchTab('venue')">
+                    <div class="ipbm-tile-head">
+                      <div class="ipbm-tile-kicker">${t.tileInfoK}</div>
+                      <div class="ipbm-tile-sub">${t.tileInfoS}</div>
+                    </div>
+                    <div class="ipbm-tile-ico">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
               </div>
-              </div>
-            </section>
-
-            <section class="ipbm-section" style="padding-bottom:18px;">
-              ${renderLiveWidget()}
             </section>
           </div>
         `;
