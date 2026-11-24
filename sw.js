@@ -1,4 +1,4 @@
-const CACHE_NAME = 'apnm2027-v17';
+const CACHE_NAME = 'apnm2027-v18';
 const ASSETS = [
   './',
   './index.html',
@@ -10,16 +10,7 @@ const ASSETS = [
   './assets/logo_apnm2027.png',
   './assets/home_visual.png',
   './assets/apnm2027_poster.jpg',
-  './assets/venue_banner.png',
-  './assets/speakers/Nicholas_J._Talley.png',
-  './assets/speakers/Ronnie_Fass.jpg',
-  './assets/speakers/Magnus_Simren.jpg',
-  './assets/speakers/Prakash_Gyawali.jpg',
-  './assets/speakers/Uday_C_Ghoshal.jpg',
-  './assets/speakers/Edoardo_Vincenzo_Savarino.png',
-  './assets/speakers/Kee_Huat_Chuah.png',
-  './assets/speakers/Noriaki_Manabe.png',
-  './assets/speakers/Tanisa_Patcharatrakul.png'
+  './assets/venue_banner.png'
 ];
 
 self.addEventListener('install', (event) => {

@@ -1083,16 +1083,16 @@
       padding: 14px 14px 18px;
     }
 
-    /* 2x2 Translucent Glass Tiles */
+    /* 3-Column Translucent Glass Tiles */
     .ipbm-tile-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
     }
     .ipbm-tile {
-      min-height: 108px;
-      border-radius: 16px;
-      padding: 13px 12px;
+      min-height: 92px;
+      border-radius: 15px;
+      padding: 11px 9px;
       background: linear-gradient(145deg, rgba(54, 78, 162, 0.82), rgba(0, 140, 214, 0.58));
       border: 1px solid rgba(255, 255, 255, 0.28);
       backdrop-filter: blur(8px);
@@ -1109,21 +1109,21 @@
     }
     .ipbm-tile:active { transform: scale(0.97); }
     .ipbm-tile-head {
-      padding-right: 18px;
+      padding-right: 4px;
     }
     .ipbm-tile-kicker {
-      font-size: 13px;
+      font-size: 11.5px;
       font-weight: 900;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       line-height: 1.2;
       color: #FFFFFF;
     }
     .ipbm-tile-sub {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
       color: rgba(224, 242, 254, 0.92);
       margin-top: 3px;
-      line-height: 1.3;
+      line-height: 1.25;
     }
     .ipbm-tile-ico {
       align-self: flex-end;
@@ -2231,18 +2231,6 @@
     function setMyDay(d) { mySelectedDay = d; render(); }
     function setRoomFilter(r) { roomFilter = r; render(); }
 
-    const SPEAKERS = [
-      { name: 'Nicholas J. Talley', aff: 'The University of Newcastle, Australia', photo: './assets/speakers/Nicholas_J._Talley.png', query: 'Talley' },
-      { name: 'Ronnie Fass', aff: 'Case Western Reserve Univ., USA', photo: './assets/speakers/Ronnie_Fass.jpg', query: 'Fass' },
-      { name: 'Magnus Simrén', aff: 'University of Gothenburg, Sweden', photo: './assets/speakers/Magnus_Simren.jpg', query: 'Simrén' },
-      { name: 'Prakash Gyawali', aff: 'Washington University, St. Louis, USA', photo: './assets/speakers/Prakash_Gyawali.jpg', query: 'Gyawali' },
-      { name: 'Uday C. Ghoshal', aff: 'Apollo Multispeciality Hospitals, India', photo: './assets/speakers/Uday_C_Ghoshal.jpg', query: 'Ghoshal' },
-      { name: 'Edoardo V. Savarino', aff: 'University of Padua, Italy', photo: './assets/speakers/Edoardo_Vincenzo_Savarino.png', query: 'Savarino' },
-      { name: 'Kee Huat Chuah', aff: 'University of Malaya, Malaysia', photo: './assets/speakers/Kee_Huat_Chuah.png', query: 'Chuah' },
-      { name: 'Noriaki Manabe', aff: 'Kawasaki Medical School, Japan', photo: './assets/speakers/Noriaki_Manabe.png', query: 'Manabe' },
-      { name: 'Tanisa Patcharatrakul', aff: 'Chulalongkorn University, Thailand', photo: './assets/speakers/Tanisa_Patcharatrakul.png', query: 'Patcharatrakul' }
-    ];
-
     function getDaysUntil(isoDateStr) {
       const kst = getCurrentKstParts();
       const targetMs = Date.parse(isoDateStr + 'T00:00:00Z');
@@ -2259,27 +2247,6 @@
       const activeDay = Number(Object.keys(DAY_DATES).find((k) => DAY_DATES[k] === kst.dateStr)) || 0;
       if (activeDay > 0) return 'DAY ' + activeDay;
       return lang === 'ko' ? '종료' : 'Ended';
-    }
-
-    function goHomeSection(secId) {
-      if (currentTab !== 'home') {
-        switchTab('home');
-      }
-      setTimeout(() => {
-        const el = document.getElementById('home-' + secId + '-section');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 40);
-    }
-
-    function scrollSpeakers(dir) {
-      const track = document.getElementById('speakersTrack');
-      if (track) track.scrollBy({ left: dir * 290, behavior: 'smooth' });
-    }
-
-    function searchSpeaker(query) {
-      searchQuery = query;
-      roomFilter = 'ALL';
-      switchTab('program');
     }
 
     function renderBodyOnly() {
@@ -2304,7 +2271,7 @@
                     <div class="ipbm-tile-sub">${t.tileProgramS}</div>
                   </div>
                   <div class="ipbm-tile-ico">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <rect x="3" y="4" width="18" height="18" rx="3"></rect>
                       <line x1="16" y1="2" x2="16" y2="6"></line>
                       <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -2321,23 +2288,8 @@
                     <div class="ipbm-tile-sub">${t.tileMyS}</div>
                   </div>
                   <div class="ipbm-tile-ico">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                  </div>
-                </button>
-
-                <button class="ipbm-tile" onclick="goHomeSection('speakers')">
-                  <div class="ipbm-tile-head">
-                    <div class="ipbm-tile-kicker">${t.tileSpeakersK}</div>
-                    <div class="ipbm-tile-sub">${t.tileSpeakersS}</div>
-                  </div>
-                  <div class="ipbm-tile-ico">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
                   </div>
                 </button>
@@ -2348,7 +2300,7 @@
                     <div class="ipbm-tile-sub">${t.tileInfoS}</div>
                   </div>
                   <div class="ipbm-tile-ico">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                       <circle cx="12" cy="10" r="3"></circle>
                     </svg>
@@ -2358,33 +2310,8 @@
               </div>
             </section>
 
-            <section class="ipbm-section">
+            <section class="ipbm-section" style="padding-bottom:18px;">
               ${renderLiveWidget()}
-            </section>
-
-            <section class="ipbm-section" id="home-speakers-section" style="padding-bottom:18px;">
-              <div class="ipbm-sec-head">
-                <h2 class="ipbm-sec-title">${t.secSpeakers}</h2>
-                <span class="ipbm-sec-line"></span>
-                <div class="sec-arrows">
-                  <button class="sec-arrow-btn" onclick="scrollSpeakers(-1)" aria-label="Previous speakers">‹</button>
-                  <button class="sec-arrow-btn" onclick="scrollSpeakers(1)" aria-label="Next speakers">›</button>
-                </div>
-              </div>
-              <div class="speakers-track" id="speakersTrack">
-                ${SPEAKERS.map((sp) => `
-                  <div class="speaker-card" onclick="searchSpeaker('${sp.query}')">
-                    <img class="speaker-photo" src="${sp.photo}" alt="${sp.name}" />
-                    <div class="speaker-body">
-                      <div>
-                        <div class="speaker-name">${sp.name}</div>
-                        <div class="speaker-aff">${sp.aff}</div>
-                      </div>
-                      <div class="speaker-link">${t.speakerAction}</div>
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
             </section>
           </div>
         `;
