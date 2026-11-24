@@ -1,4 +1,4 @@
-const CACHE_NAME = 'apnm2027-v14';
+const CACHE_NAME = 'apnm2027-v15';
 const ASSETS = [
   './',
   './index.html',
@@ -8,7 +8,17 @@ const ASSETS = [
   './assets/apple-touch-icon.png',
   './assets/favicon.png',
   './assets/logo_apnm2027.png',
-  './assets/home_visual.png'
+  './assets/home_visual.png',
+  './assets/venue_banner.png',
+  './assets/speakers/Nicholas_J._Talley.png',
+  './assets/speakers/Ronnie_Fass.jpg',
+  './assets/speakers/Magnus_Simren.jpg',
+  './assets/speakers/Prakash_Gyawali.jpg',
+  './assets/speakers/Uday_C_Ghoshal.jpg',
+  './assets/speakers/Edoardo_Vincenzo_Savarino.png',
+  './assets/speakers/Kee_Huat_Chuah.png',
+  './assets/speakers/Noriaki_Manabe.png',
+  './assets/speakers/Tanisa_Patcharatrakul.png'
 ];
 
 self.addEventListener('install', (event) => {
