@@ -142,24 +142,6 @@
       color: #FFFFFF;
     }
 
-    .menu-btn {
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--apnm-border);
-      border-radius: 10px;
-      background: #F8FAFC;
-      color: var(--apnm-indigo);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding: 0;
-      transition: background 0.15s ease;
-    }
-    .menu-btn:active {
-      background: var(--apnm-blue-soft);
-    }
-
     /* Official APNM Blue Accent Strip */
     .sub-bar {
       background: linear-gradient(90deg, #1D2088 0%, #008CD6 100%);
@@ -1213,112 +1195,6 @@
       background: var(--apnm-blue-soft);
     }
 
-    /* Key Dates Stacked Color Banners */
-    .dday-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
-    .dday-banner {
-      border-radius: 14px;
-      padding: 13px 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      color: #FFFFFF;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
-      border: none;
-      width: 100%;
-      text-align: left;
-      transition: transform 0.12s ease;
-    }
-    .dday-banner:active { transform: scale(0.985); }
-    .dday-rose   { background: linear-gradient(135deg, #B82E62 0%, #DF517B 100%); }
-    .dday-indigo { background: linear-gradient(135deg, #28357C 0%, #3E53B0 100%); }
-    .dday-teal   { background: linear-gradient(135deg, #007EB8 0%, #00A5B8 100%); }
-    .dday-info {
-      min-width: 0;
-      flex: 1;
-    }
-    .dday-label {
-      font-size: 11.5px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.3;
-    }
-    .dday-date {
-      font-size: 15px;
-      font-weight: 800;
-      color: #FFFFFF;
-      margin-top: 2px;
-      letter-spacing: -0.01em;
-    }
-    .dday-circle {
-      min-width: 58px;
-      height: 40px;
-      padding: 0 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.20);
-      border: 1px solid rgba(255, 255, 255, 0.34);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 800;
-      font-variant-numeric: tabular-nums;
-      color: #FFFFFF;
-      flex-shrink: 0;
-    }
-
-    /* Welcome / Registration Paired Action Row */
-    .ipbm-cta-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 9px;
-      margin-top: 11px;
-    }
-    .ipbm-cta-card {
-      border-radius: 14px;
-      padding: 13px 12px;
-      color: #FFFFFF;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      min-height: 68px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
-      transition: transform 0.12s ease;
-    }
-    .ipbm-cta-card:active { transform: scale(0.97); }
-    .cta-welcome {
-      background-color: #16215C;
-      background-image:
-        linear-gradient(135deg, rgba(22, 33, 92, 0.88), rgba(29, 32, 136, 0.78)),
-        url('./assets/venue_banner.png');
-      background-size: cover;
-      background-position: center;
-    }
-    .cta-reg {
-      background: linear-gradient(135deg, #007EB8 0%, #00ABBD 100%);
-    }
-    .cta-kicker {
-      font-size: 11.5px;
-      font-weight: 900;
-      letter-spacing: 0.02em;
-      color: #FFFFFF;
-      line-height: 1.25;
-    }
-    .cta-sub {
-      font-size: 11px;
-      font-weight: 600;
-      color: rgba(241, 245, 249, 0.9);
-      margin-top: 3px;
-    }
-
     /* Invited Speakers Horizontal Carousel */
     .speakers-track {
       display: flex;
@@ -1381,215 +1257,6 @@
       font-weight: 700;
       color: var(--apnm-blue);
     }
-
-    /* What's New & Newsletter Boards */
-    .board-block {
-      margin-bottom: 14px;
-    }
-    .board-block:last-child { margin-bottom: 0; }
-    .board-card {
-      background: #FFFFFF;
-      border: 1px solid var(--apnm-border);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
-    }
-    .board-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .board-item {
-      border-bottom: 1px solid #EEF2F6;
-    }
-    .board-item:last-child { border-bottom: none; }
-    .board-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px 13px;
-      color: var(--apnm-charcoal);
-      text-decoration: none;
-    }
-    .board-link:active { background: #F8FAFC; }
-    .board-title {
-      flex: 1;
-      min-width: 0;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #1E293B;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .board-more {
-      font-size: 10.5px;
-      font-weight: 800;
-      color: var(--apnm-blue);
-      background: var(--apnm-blue-soft);
-      padding: 3px 7px;
-      border-radius: 6px;
-      flex-shrink: 0;
-    }
-
-    /* Compact Secretariat Footer */
-    .ipbm-footer {
-      margin-top: 16px;
-      background: #1E293B;
-      color: #CBD5E1;
-      padding: 18px 16px 22px;
-      font-size: 11.5px;
-      line-height: 1.6;
-    }
-    .ipbm-footer-title {
-      font-size: 13px;
-      font-weight: 800;
-      color: #FFFFFF;
-      margin-bottom: 4px;
-    }
-    .ipbm-footer-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .footer-pill-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.20);
-      color: #FFFFFF;
-      text-decoration: none;
-      font-size: 11.5px;
-      font-weight: 700;
-      padding: 6px 11px;
-      border-radius: 999px;
-      cursor: pointer;
-    }
-
-    /* IPBM Slide-in Navigation Drawer */
-    .drawer-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.5);
-      z-index: 70;
-      display: none;
-      justify-content: flex-end;
-    }
-    .drawer-backdrop.open { display: flex; }
-    .nav-drawer {
-      width: 84vw;
-      max-width: 320px;
-      height: 100%;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      box-shadow: -8px 0 30px rgba(15, 23, 42, 0.24);
-    }
-    .drawer-head {
-      background: linear-gradient(135deg, #1D2088 0%, #008CD6 100%);
-      color: #FFFFFF;
-      padding: calc(16px + env(safe-area-inset-top)) 16px 16px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .drawer-dday-badge {
-      display: inline-block;
-      font-size: 13px;
-      font-weight: 900;
-      background: rgba(255, 255, 255, 0.20);
-      border: 1px solid rgba(255, 255, 255, 0.34);
-      padding: 3px 10px;
-      border-radius: 999px;
-    }
-    .drawer-today {
-      font-size: 11.5px;
-      color: rgba(224, 242, 254, 0.92);
-      margin-top: 6px;
-      font-weight: 600;
-    }
-    .drawer-subbrand {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.82);
-      margin-top: 2px;
-    }
-    .drawer-close {
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      border: none;
-      background: rgba(255, 255, 255, 0.18);
-      color: #FFFFFF;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .drawer-body {
-      flex: 1;
-      padding: 8px 0 calc(24px + env(safe-area-inset-bottom));
-    }
-    .drawer-group {
-      border-bottom: 1px solid #EEF2F6;
-    }
-    .drawer-trigger {
-      width: 100%;
-      background: #FFFFFF;
-      border: none;
-      padding: 13px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 800;
-      color: #0F172A;
-      cursor: pointer;
-      text-align: left;
-    }
-    .drawer-chev {
-      font-size: 11px;
-      color: var(--apnm-slate);
-      transition: transform 0.15s ease;
-    }
-    .drawer-group.open .drawer-chev {
-      transform: rotate(180deg);
-      color: var(--apnm-blue);
-    }
-    .drawer-sublist {
-      display: none;
-      background: #F8FAFC;
-      padding: 4px 0 8px;
-    }
-    .drawer-group.open .drawer-sublist { display: block; }
-    .drawer-subitem {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 18px 9px 24px;
-      border: none;
-      background: transparent;
-      color: #334155;
-      font-size: 13px;
-      font-weight: 600;
-      text-align: left;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .drawer-subitem:active {
-      background: var(--apnm-blue-soft);
-      color: var(--apnm-indigo);
-    }
-    .drawer-footer {
-      padding: 14px 16px;
-      border-top: 1px solid #EEF2F6;
-      background: #F8FAFC;
-    }
   </style>
 </head>
 <body>
@@ -1604,22 +1271,6 @@
         <div class="header-actions">
           <button class="lang-btn" style="padding:5px 9px;" onclick="forceRefresh()" title="Refresh" aria-label="Refresh">↻</button>
           <button id="langToggleBtn" class="lang-btn" onclick="toggleLang()">EN</button>
-          <button class="menu-btn" onclick="openDrawer()" aria-label="Menu">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
-              <line x1="4" y1="6" x2="20" y2="6"></line>
-              <line x1="4" y1="12" x2="20" y2="12"></line>
-              <line x1="4" y1="18" x2="20" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Smart Install Guide (auto-hidden when already installed) -->
-      <div id="installBanner" class="install-banner">
-        <span id="installMsg"></span>
-        <div style="display:flex;align-items:center;gap:4px;">
-          <button id="installActionBtn" class="install-btn" style="display:none;" onclick="triggerInstall()"></button>
-          <button class="install-close" onclick="dismissInstall()" aria-label="Close">✕</button>
         </div>
       </div>
 
@@ -1653,11 +1304,6 @@
         <span data-i18n="navInfo">정보</span>
       </button>
     </nav>
-  </div>
-
-  <!-- Slide-in Navigation Drawer (IPBM skeleton) -->
-  <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer(event)">
-    <aside class="nav-drawer" id="navDrawer" onclick="event.stopPropagation()"></aside>
   </div>
 
   <!-- Session Detail Bottom Sheet -->
@@ -2597,26 +2243,6 @@
       { name: 'Tanisa Patcharatrakul', aff: 'Chulalongkorn University, Thailand', photo: './assets/speakers/Tanisa_Patcharatrakul.png', query: 'Patcharatrakul' }
     ];
 
-    const KEY_DATES = [
-      { cls: 'dday-rose', iso: '2027-01-21', ko: '초록 접수 마감', en: 'Abstract Submission Deadline', dateKo: '2027년 1월 21일 (목)', dateEn: 'January 21 (Thu), 2027', focus: 'abstract' },
-      { cls: 'dday-indigo', iso: '2027-02-17', ko: '초록 채택 공지', en: 'Notification of Acceptance', dateKo: '2027년 2월 17일 (수)', dateEn: 'February 17 (Wed), 2027', focus: 'abstract' },
-      { cls: 'dday-teal', iso: '2027-03-03', ko: '사전 등록 마감', en: 'Pre-registration Deadline', dateKo: '2027년 3월 3일 (수)', dateEn: 'March 3 (Wed), 2027', focus: 'reg' }
-    ];
-
-    const NOTICES = [
-      { title: '[APPLY NOW] Travel Grant and IPPA Award', url: 'https://www.apnm.kr/gnuboard/bbs/board.php?bo_table=news&wr_id=79' },
-      { title: 'Notice for APNM 2027 Website Users', url: 'https://www.apnm.kr/gnuboard/bbs/board.php?bo_table=news&wr_id=78' },
-      { title: 'Abstract Submission System Now Open!', url: 'https://www.apnm.kr/gnuboard/bbs/board.php?bo_table=news&wr_id=77' },
-      { title: 'Welcome to APNM 2027!', url: 'https://www.apnm.kr/gnuboard/bbs/board.php?bo_table=news&wr_id=76' }
-    ];
-
-    const NEWSLETTERS = [
-      { ko: 'APNM 2027 뉴스레터 4호 (국문)', en: 'APNM 2027 4th Newsletter (Eng)', urlKo: 'https://peoplex.speedgabia.com/mail/2027/APNM2027/m-k03.html', urlEn: 'https://peoplex.speedgabia.com/mail/2027/APNM2027/m-e05.html' },
-      { ko: 'APNM 2027 뉴스레터 3호 (국문)', en: 'APNM 2027 3rd Newsletter (Eng)', urlKo: 'https://peoplex.speedgabia.com/mail/2027/APNM2027/m-k02.html', urlEn: 'https://peoplex.speedgabia.com/mail/2027/APNM2027/m-e04.html' },
-      { ko: 'APNM 2027 뉴스레터 2호 (국문)', en: 'APNM 2027 2nd Newsletter (Eng)', urlKo: 'https://peoplex.speedgabia.com/mail/2027/APNM2027/m-k01.html', urlEn: 'https://peoplex.speedgabia.com/mail/2027/APNM2027/m-e03.html' },
-      { ko: 'APNM 2027 뉴스레터 1호 (Eng)', en: 'APNM 2027 1st Newsletter (Eng)', urlKo: 'https://peoplex.speedgabia.com/mail/2027/APNM2027/m-e01.html', urlEn: 'https://peoplex.speedgabia.com/mail/2027/APNM2027/m-e01.html' }
-    ];
-
     function getDaysUntil(isoDateStr) {
       const kst = getCurrentKstParts();
       const targetMs = Date.parse(isoDateStr + 'T00:00:00Z');
@@ -2633,107 +2259,6 @@
       const activeDay = Number(Object.keys(DAY_DATES).find((k) => DAY_DATES[k] === kst.dateStr)) || 0;
       if (activeDay > 0) return 'DAY ' + activeDay;
       return lang === 'ko' ? '종료' : 'Ended';
-    }
-
-    let drawerOpenGroups = new Set([0, 1]);
-
-    function renderDrawer() {
-      const drawer = document.getElementById('navDrawer');
-      if (!drawer) return;
-      const isKo = lang === 'ko';
-      const kst = getCurrentKstParts();
-      const ddayText = formatDdayBadge('2027-04-01', false);
-
-      const groups = [
-        {
-          title: 'APNM 2027',
-          items: [
-            { label: isKo ? '초대의 글 (Welcome Message)' : 'Welcome Message', act: "closeDrawer(); openWelcomeSheet();" },
-            { label: isKo ? '대회 개요 (Overview)' : 'Congress Overview', act: "closeDrawer(); openOverviewSheet();" },
-            { label: isKo ? '초청 연자 (Invited Speakers)' : 'Invited Speakers', act: "closeDrawer(); goHomeSection('speakers');" },
-            { label: isKo ? "공지·뉴스레터 (What's New)" : "What's New & Newsletter", act: "closeDrawer(); goHomeSection('news');" }
-          ]
-        },
-        {
-          title: 'PROGRAM',
-          items: [
-            { label: isKo ? '전체 학술 프로그램' : 'Scientific Program', act: "closeDrawer(); switchTab('program');" },
-            { label: isKo ? 'Day 1 · 4/1(목) 일정' : 'Day 1 · Apr 1 (Thu)', act: "closeDrawer(); openDayFromHome(1);" },
-            { label: isKo ? 'Day 2 · 4/2(금) 일정' : 'Day 2 · Apr 2 (Fri)', act: "closeDrawer(); openDayFromHome(2);" },
-            { label: isKo ? 'Day 3 · 4/3(토) 일정' : 'Day 3 · Apr 3 (Sat)', act: "closeDrawer(); openDayFromHome(3);" },
-            { label: isKo ? `내 스케줄 (${savedIds.size}개)` : `My Schedule (${savedIds.size})`, act: "closeDrawer(); switchTab('my');" }
-          ]
-        },
-        {
-          title: 'REGISTRATION & ABSTRACT',
-          items: [
-            { label: isKo ? '주요 마감 일정 안내' : 'Important Dates & Guide', act: "closeDrawer(); openRegSheet('dates');" },
-            { label: isKo ? '초록 접수 (Abstract)' : 'Abstract Submission', act: "closeDrawer(); openRegSheet('abstract');" },
-            { label: isKo ? '수상 및 연구비 (Award & Grant)' : 'Award & Grant', act: "closeDrawer(); openRegSheet('award');" }
-          ]
-        },
-        {
-          title: 'VENUE & INFO',
-          items: [
-            { label: isKo ? '행사장 · 셔틀버스 · 지도' : 'Paradise City & Shuttle Map', act: "closeDrawer(); switchTab('venue');" },
-            { label: isKo ? '공식 홈페이지 (apnm.kr) ↗' : 'Official Website (apnm.kr) ↗', href: 'https://www.apnm.kr/' }
-          ]
-        }
-      ];
-
-      drawer.innerHTML = `
-        <div class="drawer-head">
-          <div>
-            <span class="drawer-dday-badge">${ddayText}</span>
-            <div class="drawer-today">Today ${kst.dateStr} (KST)</div>
-            <div class="drawer-subbrand">APNM 2027 · Paradise City, Incheon</div>
-          </div>
-          <button class="drawer-close" onclick="closeDrawer()" aria-label="Close">✕</button>
-        </div>
-        <div class="drawer-body">
-          ${groups.map((g, idx) => {
-            const isOpen = drawerOpenGroups.has(idx);
-            return `
-              <div class="drawer-group ${isOpen ? 'open' : ''}">
-                <button class="drawer-trigger" onclick="toggleDrawerGroup(${idx})">
-                  <span>${g.title}</span>
-                  <span class="drawer-chev">▾</span>
-                </button>
-                <div class="drawer-sublist">
-                  ${g.items.map((it) => it.href
-                    ? `<a class="drawer-subitem" href="${it.href}" target="_blank" rel="noopener" onclick="closeDrawer()">${it.label}</a>`
-                    : `<button class="drawer-subitem" onclick="${it.act}">${it.label}</button>`
-                  ).join('')}
-                </div>
-              </div>
-            `;
-          }).join('')}
-        </div>
-        <div class="drawer-footer">
-          <div style="font-size:11px;color:#64748B;line-height:1.5;">
-            ${isKo ? '로그인 없이 바로 일정 저장 및 연자 검색이 가능합니다.' : 'Bookmark sessions locally without login.'}
-          </div>
-        </div>
-      `;
-    }
-
-    function openDrawer() {
-      renderDrawer();
-      const bd = document.getElementById('drawerBackdrop');
-      if (bd) bd.classList.add('open');
-    }
-
-    function closeDrawer(ev) {
-      const bd = document.getElementById('drawerBackdrop');
-      if (!bd) return;
-      if (ev && ev.target !== bd) return;
-      bd.classList.remove('open');
-    }
-
-    function toggleDrawerGroup(idx) {
-      if (drawerOpenGroups.has(idx)) drawerOpenGroups.delete(idx);
-      else drawerOpenGroups.add(idx);
-      renderDrawer();
     }
 
     function goHomeSection(secId) {
@@ -2757,83 +2282,12 @@
       switchTab('program');
     }
 
-    function openWelcomeSheet() {
-      const isKo = lang === 'ko';
-      document.getElementById('detailContent').innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-          <span class="cat-badge" style="background:#EBF6FC;color:#1D2088;border-color:#BCE3F8;">APNM 2027</span>
-          <button onclick="closeDetail()" style="border:none;background:#F1F5F9;color:#475569;border-radius:999px;width:28px;height:28px;font-weight:700;cursor:pointer;">✕</button>
-        </div>
-        <h2 style="font-size:17px;font-weight:800;color:#1D2088;margin:10px 0 6px;">${isKo ? '초대의 글 (Welcome Message)' : 'Welcome Message'}</h2>
-        <div style="font-size:13px;line-height:1.65;color:#334155;">
-          ${isKo
-            ? `<p style="margin:0 0 10px;">대한소화기기능성질환·운동학회(KSNM)는 제14회 아시아 소화기기능성질환·운동학회 연수강좌(APNM 2027) 및 제38회 대한소화기기능성질환·운동학회 학술대회에 여러분을 초대합니다.</p>
-               <p style="margin:0 0 10px;"><b>"From Rome V to Practice: New Concepts in DGBI"</b>를 주제로 <b>2027년 4월 1일(목) ~ 3일(토) 인천 파라다이스시티</b>에서 개최되며, 국내외 석학들의 초청 강연과 최신 임상 연구 교류의 장이 펼쳐집니다.</p>`
-            : `<p style="margin:0 0 10px;">On behalf of the Korean Society of Neurogastroenterology and Motility (KSNM), it is our great pleasure and honor to invite you to APNM 2027 — the 14th Asian Postgraduate Course on Neurogastroenterology and Motility in conjunction with the 38th Annual Conference of KSNM.</p>
-               <p style="margin:0 0 10px;">With <b>"From Rome V to Practice: New Concepts in DGBI"</b> as its guiding theme, APNM 2027 will take place at <b>Paradise City, Incheon, Korea from April 1 to 3, 2027</b>.</p>`}
-          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:10px 12px;font-size:12px;color:#475569;">
-            <b>Moo In Park</b> (President, KSNM)<br/>
-            <b>Sang Kil Lee</b> (Vice President, KSNM)
-          </div>
-        </div>
-        <a class="sheet-cta add" style="display:block;text-align:center;text-decoration:none;margin-top:14px;" href="https://apnm.kr/sub01_01.php" target="_blank" rel="noopener">${isKo ? '공식 페이지에서 전문 보기 ↗' : 'Read Full Message on apnm.kr ↗'}</a>
-      `;
-      document.getElementById('detailBackdrop').classList.add('open');
-    }
-
-    function openOverviewSheet() {
-      const isKo = lang === 'ko';
-      document.getElementById('detailContent').innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-          <span class="cat-badge" style="background:#EBF6FC;color:#1D2088;border-color:#BCE3F8;">OVERVIEW</span>
-          <button onclick="closeDetail()" style="border:none;background:#F1F5F9;color:#475569;border-radius:999px;width:28px;height:28px;font-weight:700;cursor:pointer;">✕</button>
-        </div>
-        <h2 style="font-size:17px;font-weight:800;color:#1D2088;margin:10px 0 6px;">APNM 2027 Overview</h2>
-        <table class="detail-table">
-          <tr><th>${isKo ? '대회명' : 'Title'}</th><td>14th Asian Postgraduate Course on Neurogastroenterology & Motility (APNM 2027)</td></tr>
-          <tr><th>${isKo ? '일시' : 'Dates'}</th><td>2027. 4. 1 (Thu) – 4. 3 (Sat)</td></tr>
-          <tr><th>${isKo ? '장소' : 'Venue'}</th><td>Paradise City, Incheon, Korea</td></tr>
-          <tr><th>${isKo ? '주제' : 'Theme'}</th><td>From Rome V to Practice: New Concepts in DGBI</td></tr>
-          <tr><th>${isKo ? '주최' : 'Host'}</th><td>The Korean Society of Neurogastroenterology and Motility (KSNM)</td></tr>
-          <tr><th>${isKo ? '사무국' : 'Secretariat'}</th><td>People-X, Inc. (info@apnm.kr / +82-2-566-5058)</td></tr>
-        </table>
-        <a class="sheet-cta add" style="display:block;text-align:center;text-decoration:none;margin-top:14px;" href="https://apnm.kr/sub01_02.php" target="_blank" rel="noopener">${isKo ? '공식 개요 페이지 ↗' : 'Open Official Overview ↗'}</a>
-      `;
-      document.getElementById('detailBackdrop').classList.add('open');
-    }
-
-    function openRegSheet(focus) {
-      const isKo = lang === 'ko';
-      document.getElementById('detailContent').innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-          <span class="cat-badge" style="background:#FEF3F5;color:#B82E62;border-color:#FAD3DC;">${focus === 'abstract' ? 'ABSTRACT' : focus === 'award' ? 'AWARD & GRANT' : 'IMPORTANT DATES'}</span>
-          <button onclick="closeDetail()" style="border:none;background:#F1F5F9;color:#475569;border-radius:999px;width:28px;height:28px;font-weight:700;cursor:pointer;">✕</button>
-        </div>
-        <h2 style="font-size:17px;font-weight:800;color:#1D2088;margin:10px 0 6px;">${isKo ? '사전등록 · 초록 제출 주요 일정' : 'Abstract Submission & Registration'}</h2>
-        <table class="detail-table">
-          ${KEY_DATES.map((kd) => `
-            <tr>
-              <th>${formatDdayBadge(kd.iso, true)}</th>
-              <td><b>${isKo ? kd.ko : kd.en}</b><br/><span style="color:#546E7A;">${isKo ? kd.dateKo : kd.dateEn}</span></td>
-            </tr>
-          `).join('')}
-        </table>
-        <div class="btn-grid" style="margin-top:14px;">
-          <a class="action-btn action-blue" href="https://apnm.kr/sub03_01.php" target="_blank" rel="noopener">${isKo ? '초록 접수 안내 ↗' : 'Abstract Submission ↗'}</a>
-          <a class="action-btn action-soft" href="https://apnm.kr/sub03_02.php" target="_blank" rel="noopener">${isKo ? 'Award & Grant ↗' : 'Award & Grant ↗'}</a>
-          <a class="action-btn action-outline" href="https://apnm.kr/sub04_02.php" target="_blank" rel="noopener">${isKo ? '국내 사전등록 ↗' : 'Reg. (Korean) ↗'}</a>
-          <a class="action-btn action-outline" href="https://apnm.kr/sub04_03.php" target="_blank" rel="noopener">${isKo ? '해외 등록 ↗' : 'Reg. (Overseas) ↗'}</a>
-        </div>
-      `;
-      document.getElementById('detailBackdrop').classList.add('open');
-    }
-
     function renderBodyOnly() {
       const t = T[lang];
       const isKo = lang === 'ko';
       const main = document.getElementById('mainContent');
 
-      // HOME SCREEN — IPBM 2027 Skeleton adapted to APNM 2027
+      // HOME SCREEN — Streamlined Native App UI + IPBM 2027 Skeleton + Official Poster
       if (currentTab === 'home') {
         main.innerHTML = `
           <div class="ipbm-home">
@@ -2905,39 +2359,10 @@
             </section>
 
             <section class="ipbm-section">
-              <div class="ipbm-sec-head">
-                <h2 class="ipbm-sec-title">${t.secKeyDates}</h2>
-                <span class="ipbm-sec-line"></span>
-              </div>
-              <div class="dday-stack">
-                ${KEY_DATES.map((kd) => `
-                  <button class="dday-banner ${kd.cls}" onclick="openRegSheet('${kd.focus}')">
-                    <div class="dday-info">
-                      <div class="dday-label">${isKo ? kd.ko : kd.en}</div>
-                      <div class="dday-date">${isKo ? kd.dateKo : kd.dateEn}</div>
-                    </div>
-                    <div class="dday-circle">${formatDdayBadge(kd.iso, true)}</div>
-                  </button>
-                `).join('')}
-              </div>
-
-              <div class="ipbm-cta-row">
-                <button class="ipbm-cta-card cta-welcome" onclick="openWelcomeSheet()">
-                  <div class="cta-kicker">${t.ctaWelcomeK}</div>
-                  <div class="cta-sub">${t.ctaWelcomeS} ›</div>
-                </button>
-                <button class="ipbm-cta-card cta-reg" onclick="openRegSheet('reg')">
-                  <div class="cta-kicker">${t.ctaRegK}</div>
-                  <div class="cta-sub">${t.ctaRegS} ›</div>
-                </button>
-              </div>
-            </section>
-
-            <section class="ipbm-section">
               ${renderLiveWidget()}
             </section>
 
-            <section class="ipbm-section" id="home-speakers-section">
+            <section class="ipbm-section" id="home-speakers-section" style="padding-bottom:18px;">
               <div class="ipbm-sec-head">
                 <h2 class="ipbm-sec-title">${t.secSpeakers}</h2>
                 <span class="ipbm-sec-line"></span>
@@ -2961,57 +2386,6 @@
                 `).join('')}
               </div>
             </section>
-
-            <section class="ipbm-section" id="home-news-section">
-              <div class="board-block">
-                <div class="ipbm-sec-head">
-                  <h2 class="ipbm-sec-title">${t.secNews}</h2>
-                  <span class="ipbm-sec-line"></span>
-                </div>
-                <div class="board-card">
-                  <ul class="board-list">
-                    ${NOTICES.map((n) => `
-                      <li class="board-item">
-                        <a class="board-link" href="${n.url}" target="_blank" rel="noopener">
-                          <span class="board-title">${n.title}</span>
-                          <span class="board-more">MORE +</span>
-                        </a>
-                      </li>
-                    `).join('')}
-                  </ul>
-                </div>
-              </div>
-
-              <div class="board-block">
-                <div class="ipbm-sec-head">
-                  <h2 class="ipbm-sec-title">${t.secNewsletter}</h2>
-                  <span class="ipbm-sec-line"></span>
-                </div>
-                <div class="board-card">
-                  <ul class="board-list">
-                    ${NEWSLETTERS.map((nl) => `
-                      <li class="board-item">
-                        <a class="board-link" href="${isKo ? nl.urlKo : nl.urlEn}" target="_blank" rel="noopener">
-                          <span class="board-title">${isKo ? nl.ko : nl.en}</span>
-                          <span class="board-more">MORE +</span>
-                        </a>
-                      </li>
-                    `).join('')}
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <footer class="ipbm-footer">
-              <div class="ipbm-footer-title">${t.footerOrg}</div>
-              <div>${t.footerAddr}</div>
-              <div style="margin-top:2px;color:#94A3B8;">E-mail: info@apnm.kr · Tel: +82-2-538-0634 (KSNM)</div>
-              <div class="ipbm-footer-actions">
-                <a class="footer-pill-link" href="https://www.apnm.kr/" target="_blank" rel="noopener">${t.openWeb}</a>
-                <a class="footer-pill-link" href="mailto:info@apnm.kr">✉ ${t.emailSec}</a>
-                ${!isStandalone ? `<button class="footer-pill-link" onclick="openInstallGuide()">${t.installGuideBtn}</button>` : ''}
-              </div>
-            </footer>
           </div>
         `;
         return;
@@ -3276,32 +2650,12 @@
       }
 
       renderBodyOnly();
-      renderDrawer();
     }
-
-    // --- PWA Install & Service Worker ---
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    let installDismissed = false;
 
     function updateInstallBanner() {
       const banner = document.getElementById('installBanner');
-      const msg = document.getElementById('installMsg');
-      const btn = document.getElementById('installActionBtn');
-      if (isStandalone || installDismissed) {
-        banner.classList.remove('show');
-        return;
-      }
-      if (deferredPrompt) {
-        msg.textContent = T[lang].androidInstall;
-        btn.textContent = T[lang].installBtn;
-        btn.style.display = 'inline-block';
-        banner.classList.add('show');
-      } else if (isIOS) {
-        msg.textContent = T[lang].iosInstall;
-        btn.style.display = 'none';
-        banner.classList.add('show');
-      }
+      if (!banner) return;
+      banner.classList.remove('show');
     }
 
     window.addEventListener('beforeinstallprompt', (e) => {

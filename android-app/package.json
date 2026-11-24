@@ -1,0 +1,17 @@
+{
+  "name": "apnm2027-android",
+  "version": "1.0.0",
+  "private": true,
+  "description": "APNM 2027 Mobile App (Capacitor Android wrapper)",
+  "scripts": {
+    "sync:web": "node -e \"const fs=require('fs');fs.rmSync('www',{recursive:true,force:true});fs.mkdirSync('www',{recursive:true});fs.copyFileSync('../index.html','www/index.html');fs.copyFileSync('../manifest.json','www/manifest.json');fs.cpSync('../assets','www/assets',{recursive:true});\"",
+    "cap:sync": "npm run sync:web && npx cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/core": "^6.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0"
+  }
+}

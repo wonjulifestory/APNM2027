@@ -1,0 +1,8 @@
+{
+  "appId": "org.ksnm.apnm2027",
+  "appName": "APNM 2027",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false
+  }
+}
