@@ -1052,10 +1052,19 @@
     }
 
     /* === IPBM 2027 Skeleton One-Screen Zero-Scroll Home === */
-    .app-shell.is-home {
-      height: 100vh;
-      height: 100dvh;
+    html.home-locked, body.home-locked {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: manipulation;
+    }
+    .app-shell.is-home {
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior: none;
     }
     .app-shell.is-home .main-content {
       flex: 1;
@@ -2540,7 +2549,10 @@
       const t = T[lang];
       document.documentElement.lang = lang;
       const shellEl = document.querySelector('.app-shell');
-      if (shellEl) shellEl.classList.toggle('is-home', currentTab === 'home');
+      const isHomeTab = currentTab === 'home';
+      if (shellEl) shellEl.classList.toggle('is-home', isHomeTab);
+      document.documentElement.classList.toggle('home-locked', isHomeTab);
+      document.body.classList.toggle('home-locked', isHomeTab);
       document.getElementById('langToggleBtn').textContent = lang === 'ko' ? 'EN' : '한국어';
       document.getElementById('savedCountBadge').textContent = savedIds.size;
 
